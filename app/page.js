@@ -39,13 +39,18 @@ export default function Home() {
             /></div>
       <div className="w-full items-center justify-between text-black animate-in">
       <h2 className="text-5xl font-bold mb-3 tracking-tight">Outono</h2>
-      <p className="mb-3 text-lg leading-7 [&:not(:first-child)]:mt-6">Outono simboliza transição, maturação e crescimento. Somos uma comunidade de programadores, empreendedores e designers Portugueses com raizes em Berlim.</p>
+      <p className="mb-3 text-lg leading-7 text-gray-800 [&:not(:first-child)]:mt-6">Outono simboliza transição, maturação e crescimento. Somos uma comunidade de programadores, empreendedores e designers Portugueses com raizes em Berlim.</p>
 
       <h2 className="text-3xl font-bold mb-3 mt-8 tracking-tight">O que fazemos?</h2>
-      <p className="mb-3 text-lg text-gray-800 leading-7 [&:not(:first-child)]:mt-6">A Outono existe para conectar e apoiar Portugueses que fazem parte ou que se querem estabelecer no ecossistema tecnológico de Berlim. Organizamos jantares, meetups e partilhamos experiências e oportunidades de crescimento pessoal e profissional.</p>
+      <p className="mb-3 text-lg text-gray-800 leading-7 [&:not(:first-child)]:mt-6">A Outono existe para conectar e apoiar Portugueses que trabalham em tecnologia a partir de Berlim. Organizamos jantares, meetups e partilhamos experiências e oportunidades de crescimento pessoal e profissional.</p>
 
-      <p className="mb-3 text-lg text-gray-800">Para mais informação, envia um email para <span className="hover:bg-gray-200 border-b pb-2 transition-all delay-100"><HoverCard>
-  <HoverCardTrigger>malik@outono.org</HoverCardTrigger>
+      <p className="mb-3 text-lg text-gray-800 leading-7 [&:not(:first-child)]:mt-6">Para promover coesão e um espirito de co-criação, a comunidade tem um limite inicial de 25 membros e funciona por convite ou por candidatura.</p>
+
+<h2 className="text-3xl font-bold mb-3 mt-8 tracking-tight">A visão</h2>
+      <p className="mb-3 text-lg text-gray-800 leading-7 [&:not(:first-child)]:mt-6">Queremos construir hubs em cidades chave para ajudar empreendedores a entrar em novos mercados e facilitar a transição e integração de profissionais que decidiram estabelecer-se fora de Portugal.</p>
+
+      <p className="mt-10 text-lg text-gray-800">Para mais informação, envia uma mensagem a <span className="hover:bg-gray-200 border-b pb-2 transition-all delay-100"><HoverCard>
+  <HoverCardTrigger className="font-medium">@malikpiara</HoverCardTrigger>.
   <HoverCardContent className="w-80">
   <div className="flex justify-between space-x-4">
   <Avatar>
@@ -66,8 +71,8 @@ export default function Home() {
     </div>
   </HoverCardContent>
 </HoverCard></span></p>
-      </div>
       
+      </div>
 
     </main>
   );
