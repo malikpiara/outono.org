@@ -5,6 +5,21 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card"
 
+import { Button } from "@/components/ui/button"
+
+
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer"
+
+
 import {
   Avatar,
   AvatarFallback,
@@ -44,13 +59,17 @@ export default function Home() {
       <h2 className="text-3xl font-bold mb-3 mt-8 tracking-tight">O que fazemos?</h2>
       <p className="mb-3 text-lg text-gray-800 leading-7 [&:not(:first-child)]:mt-6">A Outono existe para conectar e apoiar Portugueses que trabalham em tecnologia a partir de Berlim. Organizamos jantares, meetups e partilhamos experiências e oportunidades de crescimento pessoal e profissional.</p>
 
-      <p className="mb-3 text-lg text-gray-800 leading-7 [&:not(:first-child)]:mt-6">Para promover coesão e um espirito de co-criação, a comunidade tem um limite inicial de 25 membros e funciona por convite ou por candidatura.</p>
+      <p className="mb-3 text-lg text-gray-800 leading-7 [&:not(:first-child)]:mt-6">Para promover coesão e um espirito de co-criação, a comunidade tem um limite inicial de <span className="line-through">15</span> 20 membros e funciona por convite ou por candidatura.</p>
 
 <h2 className="text-3xl font-bold mb-3 mt-8 tracking-tight">A visão</h2>
       <p className="mb-3 text-lg text-gray-800 leading-7 [&:not(:first-child)]:mt-6">Queremos construir hubs em cidades chave para ajudar empreendedores a entrar em novos mercados e facilitar a transição e integração de profissionais que decidiram estabelecer-se fora de Portugal.</p>
 
-      <p className="mt-10 text-lg text-gray-800">Para mais informação, envia uma mensagem a <span className="hover:bg-gray-200 border-b pb-2 transition-all delay-100"><HoverCard>
-  <HoverCardTrigger className="font-medium">@malikpiara</HoverCardTrigger>.
+      <p className="mt-10 text-lg text-gray-800">Para mais informação, envia uma mensagem a
+
+<Drawer>
+  <DrawerTrigger asChild>
+  <span className="hover:bg-gray-200 border-b pb-2 transition-all delay-100"><HoverCard>
+  <HoverCardTrigger className="font-medium"> @malikpiara</HoverCardTrigger>.
   <HoverCardContent className="w-80">
   <div className="flex justify-between space-x-4">
   <Avatar>
@@ -70,7 +89,22 @@ export default function Home() {
             </div></div>
     </div>
   </HoverCardContent>
-</HoverCard></span></p>
+</HoverCard></span>
+  </DrawerTrigger>
+  <DrawerContent>
+    <DrawerHeader>
+      <DrawerTitle>Are you absolutely sure?</DrawerTitle>
+      <DrawerDescription>This action cannot be undone.</DrawerDescription>
+    </DrawerHeader>
+    <DrawerFooter>
+      <Button className='bg-orange-600'>Submit</Button>
+      <DrawerClose>
+        <Button variant="outline">Cancel</Button>
+      </DrawerClose>
+    </DrawerFooter>
+  </DrawerContent>
+</Drawer>
+</p>
       
       </div>
 
