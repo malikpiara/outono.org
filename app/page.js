@@ -6,7 +6,8 @@ import {
 } from "@/components/ui/hover-card"
 
 import { Button } from "@/components/ui/button"
-
+import { Mail, Send, MessageCircle} from "lucide-react"
+import Link from "next/link"
 
 import {
   Drawer,
@@ -93,11 +94,22 @@ export default function Home() {
   </DrawerTrigger>
   <DrawerContent>
     <DrawerHeader>
-      <DrawerTitle>Are you absolutely sure?</DrawerTitle>
-      <DrawerDescription>This action cannot be undone.</DrawerDescription>
+      <DrawerTitle>Entra em contacto</DrawerTitle>
+      <DrawerDescription>Costumamos responder dentro de uma semana.</DrawerDescription>
     </DrawerHeader>
     <DrawerFooter>
-      <Button className='bg-orange-600'>Submit</Button>
+      <Button variant="outline" asChild>
+        <Link href="mailto:malik@outono.org"> <Mail className="mr-2 h-4 w-4" />Email</Link>
+       </Button>
+
+       <Button variant="outline" asChild>
+        <Link href="https://t.me/malikpiara/"> <Send className="mr-2 h-4 w-4" />Telegram</Link>
+       </Button>
+
+       <Button variant="outline" asChild>
+        <Link href="https://wa.me/+351962119084/"> <MessageCircle className="mr-2 h-4 w-4" />WhatsApp</Link>
+       </Button>
+      
       <DrawerClose>
         <Button variant="outline">Cancel</Button>
       </DrawerClose>
