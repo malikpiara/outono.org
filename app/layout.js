@@ -1,5 +1,15 @@
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import {
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarSeparator,
+  MenubarShortcut,
+  MenubarTrigger,
+} from "@/components/ui/menubar"
+import { Link } from "lucide-react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,6 +23,19 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <Motto/>
+        <Menubar>
+  <MenubarMenu>
+    <MenubarTrigger className={'font-semibold'}>Outono</MenubarTrigger>
+  </MenubarMenu>
+
+  <MenubarMenu>
+  <MenubarTrigger>Pessoas</MenubarTrigger>
+  <MenubarContent>
+      <MenubarItem>Berlim</MenubarItem>
+    </MenubarContent>
+  </MenubarMenu>
+</Menubar>
+
         {children}
         </body>
     </html>
