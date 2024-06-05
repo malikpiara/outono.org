@@ -30,7 +30,7 @@ import PeopleSection from "@/components/peopleSection"
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between md:p-24 p-6 md:max-w-4xl max-w-7xl m-auto">
+    <main className="flex min-h-screen flex-col items-center justify-between md:p-24 p-4 md:max-w-4xl max-w-7xl m-auto">
       <div
             className='absolute inset-x-0 bottom-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-10'
             aria-hidden='true'
@@ -56,28 +56,32 @@ export default function Home() {
             /></div>
       <div className="w-full items-center justify-between text-black animate-in">
       <h2 className="text-5xl font-bold mb-3 tracking-tight">Outono</h2>
-      <p className="mb-3 text-lg leading-7 text-gray-800 [&:not(:first-child)]:mt-6">Outono simboliza transição, maturação e crescimento. Somos uma comunidade de programadores, empreendedores e designers Portugueses com raizes em Berlim.</p>
+      <p className="mb-3 text-lg leading-7 text-gray-800 [&:not(:first-child)]:mt-6">Outono simboliza maturação e crescimento. Assim como o Outono nos dá a conhecer a transição para uma nova etapa, acreditamos que o ecossistema tecnológico e empreendedor português está também a atravessar um novo período de inovação e competitividade.</p> 
+      
+      <p className="mb-3 text-lg leading-7 text-gray-800 [&:not(:first-child)]:mt-6">A Outono é uma comunidade de programadores, empreendedores e designers portugueses a viver e a trabalhar fora de Portugal, com hubs em cidades diferentes, começando em Berlim.</p>
 
-      <h2 className="text-3xl mb-3 mt-8 tracking-tight font-medium">O que fazemos?</h2>
-      <p className="mb-3 text-lg text-gray-800 leading-7 [&:not(:first-child)]:mt-6">A Outono existe para conectar e apoiar Portugueses que trabalham em tecnologia a partir de Berlim. Organizamos jantares, meetups e partilhamos experiências e oportunidades de crescimento pessoal e profissional.</p>
+      <h2 className="text-2xl mb-3 mt-8 tracking-tight font-semibold">O que fazemos?</h2>
+      <p className="mb-3 text-lg text-gray-800 leading-7 [&:not(:first-child)]:mt-6">Existimos para conectar e apoiar Portugueses que trabalham em tecnologia e que empreendem pelo mundo fora. Organizamos jantares, meetups e partilhamos experiências e oportunidades de crescimento pessoal e profissional.</p>
 
-      <p className="mb-3 text-lg text-gray-800 leading-7 [&:not(:first-child)]:mt-6">Para promover coesão e um espirito de co-criação, a comunidade tem um limite inicial de <span className="line-through">15</span> 20 membros e funciona por convite ou por candidatura.</p>
+      <p className="mb-3 text-lg text-gray-800 leading-7 [&:not(:first-child)]:mt-6">Para promover coesão e um espirito de co-criação, o primeiro hub em Berlim tem um limite inicial de <span className="line-through">15</span> 20 membros e funciona por convite ou candidatura.</p>
 
-<h2 className="text-3xl mb-3 mt-8 tracking-tight font-medium">A visão</h2>
-      <p className="mb-3 text-lg text-gray-800 leading-7 [&:not(:first-child)]:mt-6">Queremos construir hubs em cidades chave para ajudar empreendedores a entrar em novos mercados e facilitar a transição e integração de profissionais que decidiram estabelecer-se fora de Portugal.</p>
+<h2 className="text-2xl mb-3 mt-8 tracking-tight font-semibold">A visão</h2>
+      <p className="mb-3 text-lg text-gray-800 leading-7 [&:not(:first-child)]:mt-6">Tencionamos construir hubs em cidades chave para ajudar empreendedores a entrar em novos mercados e facilitar a transição e integração de profissionais que decidiram estabelecer-se fora de Portugal.</p>
 
-      <p className="mt-10 text-lg text-gray-800">Para mais informação, envia uma mensagem a
+      <p className="mt-10 text-lg text-gray-800">Para mais informação, envia uma mensagem a&nbsp;
 
 <Drawer>
   <DrawerTrigger asChild>
-  <span className="hover:bg-gray-200 border-b pb-2 transition-all delay-100"><HoverCard>
-  <HoverCardTrigger className="font-medium">@malikpiara</HoverCardTrigger>.
-  <HoverCardContent className="w-80">
-  <div className="flex justify-between space-x-4">
-  <Avatar>
-            <AvatarImage src="https://media.licdn.com/dms/image/D4E03AQEOLaIfFwqJOQ/profile-displayphoto-shrink_800_800/0/1700920157587?e=1722470400&v=beta&t=6kuXPp-PBEDI_nZh8TsaZY9Gh5S8as3dfPTyZf9LDJM" />
-            <AvatarFallback>M</AvatarFallback>
-  </Avatar>
+ 
+  <button className="hover:bg-gray-200 border-b pb-2 transition-all delay-100">
+    <HoverCard>
+      <HoverCardTrigger className="font-medium">@malikpiara</HoverCardTrigger>.
+      <HoverCardContent className="w-80">
+        <div className="flex justify-between space-x-4">
+          <Avatar>
+                    <AvatarImage src="https://media.licdn.com/dms/image/D4E03AQEOLaIfFwqJOQ/profile-displayphoto-shrink_800_800/0/1700920157587?e=1722470400&v=beta&t=6kuXPp-PBEDI_nZh8TsaZY9Gh5S8as3dfPTyZf9LDJM" />
+                    <AvatarFallback>M</AvatarFallback>
+          </Avatar>
   <div className="space-y-1">
             <h4 className="font-semibold">Malik Piara</h4>
             <p className="text-sm">
@@ -91,7 +95,7 @@ export default function Home() {
             </div></div>
     </div>
   </HoverCardContent>
-</HoverCard></span>
+</HoverCard></button>
   </DrawerTrigger>
   <DrawerContent>
     <DrawerHeader>
@@ -119,8 +123,8 @@ export default function Home() {
 </Drawer>
 </p>
 
-<h2 className="text-3xl mb-3 mt-8 tracking-tight font-medium">Pessoas</h2>
-      <p className="mb-3 text-lg text-gray-800 leading-7 [&:not(:first-child)]:mt-6">Conhece alguns dos elementos que já integram a nossa comunidade.</p>
+<h2 className="text-2xl mb-3 mt-8 tracking-tight font-semibold">Pessoas</h2>
+      <p className="mb-3 text-lg text-gray-800 leading-7 [&:not(:first-child)]:mt-6">Conhece alguns dos elementos que já integram a nossa comunidade em Berlim.</p>
       </div>
 
       <PeopleSection/>

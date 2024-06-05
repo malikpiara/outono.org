@@ -6,6 +6,10 @@
     animation: animateIn 0.9s ease 0.30s both;
   }
   
+body:first-child {
+  background-color: white;
+}
+
   @keyframes animateIn {
     from {
       opacity: 0;

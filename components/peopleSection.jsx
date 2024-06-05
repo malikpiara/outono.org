@@ -6,7 +6,8 @@ export default function PeopleSection() {
     return (
     <div className="grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 mt-8">
           <div className="text-center text-gray-500">
-            <Image className="mx-auto mb-4 w-28 h-28 rounded-full" width={50} height={50} src={'/malik.jpeg'} alt="Malik Piara"/>
+            <Image className="mx-auto mb-4 w-28 h-28 rounded-full"
+             width={100} height={100} src={'/malik.jpeg'} alt="Malik Piara"/>
               
               <h3 className="mb-1 text-xl tracking-tight text-gray-900">
                   Malik Piara
@@ -27,7 +28,7 @@ export default function PeopleSection() {
               </ul>
           </div>
           <div className="text-center text-gray-500">
-            <Image className="mx-auto mb-4 w-28 h-28 rounded-full grayscale" width={50} height={50} src={'/nuno.jpeg'} alt="Nuno Coelho Santos"/>
+            <Image className="mx-auto mb-4 w-28 h-28 rounded-full grayscale" width={100} height={100} src={'/nuno.jpeg'} alt="Nuno Coelho Santos"/>
               
               <h3 className="mb-1 text-xl tracking-tight text-gray-900">
             Nuno Coelho Santos
@@ -48,7 +49,7 @@ export default function PeopleSection() {
               </ul>
           </div>
           <div className="text-center text-gray-500">
-            <Image className="mx-auto mb-4 w-28 h-28 rounded-full grayscale" width={50} height={50} src={'/pauloTruta.jpeg'} alt="Paulo Truta"/>
+            <Image className="mx-auto mb-4 w-28 h-28 rounded-full grayscale" width={100} height={100} src={'/pauloTruta.jpeg'} alt="Paulo Truta"/>
               
               <h3 className="mb-1 text-xl tracking-tight text-gray-900">
                   Paulo Truta
