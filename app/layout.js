@@ -9,7 +9,7 @@ import {
   MenubarShortcut,
   MenubarTrigger,
 } from "@/components/ui/menubar"
-import { Link } from "lucide-react";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,13 +25,17 @@ export default function RootLayout({ children }) {
         <Motto/>
         <Menubar>
   <MenubarMenu>
-    <MenubarTrigger className={'font-semibold'}>Outono</MenubarTrigger>
+    <MenubarTrigger className={'font-semibold'} >Outono</MenubarTrigger>
+    <MenubarContent>
+      <MenubarItem><Link href='https://www.instagram.com/outono.community/' target="_blank">Instagram</Link></MenubarItem>
+      <MenubarItem><Link href='https://www.linkedin.com/company/outono-org/' target="_blank">LinkedIn</Link></MenubarItem>
+    </MenubarContent>
   </MenubarMenu>
 
   <MenubarMenu>
   <MenubarTrigger>Pessoas</MenubarTrigger>
   <MenubarContent>
-      <MenubarItem>Berlim</MenubarItem>
+      <MenubarItem><Link href='#berlin'>Berlim</Link></MenubarItem>
     </MenubarContent>
   </MenubarMenu>
 </Menubar>

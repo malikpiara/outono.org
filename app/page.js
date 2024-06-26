@@ -1,10 +1,4 @@
 
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card"
-
 import { Button } from "@/components/ui/button"
 import { Mail, Send, MessageCircle} from "lucide-react"
 import Link from "next/link"
@@ -63,39 +57,18 @@ export default function Home() {
       <h2 className="text-2xl mb-3 mt-8 tracking-tight font-semibold">O que fazemos?</h2>
       <p className="mb-3 text-lg text-gray-800 leading-7 [&:not(:first-child)]:mt-6">Existimos para conectar e apoiar Portugueses que trabalham em tecnologia e que empreendem pelo mundo fora. Organizamos jantares, meetups e partilhamos experiências e oportunidades de crescimento pessoal e profissional.</p>
 
-      <p className="mb-3 text-lg text-gray-800 leading-7 [&:not(:first-child)]:mt-6">Para promover coesão e um espirito de co-criação, o primeiro hub em Berlim tem um limite inicial de <span className="line-through">15</span> 20 membros e funciona por convite ou candidatura.</p>
+      <p className="mb-3 text-lg text-gray-800 leading-7 [&:not(:first-child)]:mt-6">Para promover coesão e um espirito de co-criação, o primeiro hub em Berlim tem um limite inicial de 15 membros e funciona por convite ou candidatura.</p>
 
 <h2 className="text-2xl mb-3 mt-8 tracking-tight font-semibold">A visão</h2>
       <p className="mb-3 text-lg text-gray-800 leading-7 [&:not(:first-child)]:mt-6">Tencionamos construir hubs em cidades chave para ajudar empreendedores a entrar em novos mercados e facilitar a transição e integração de profissionais que decidiram estabelecer-se fora de Portugal.</p>
 
-      <p className="mt-10 text-lg text-gray-800">Para mais informação, envia uma mensagem a&nbsp;
+      <p className="mt-10 text-lg text-gray-800">Para mais informação, &nbsp;
 
 <Drawer>
   <DrawerTrigger asChild>
  
   <button className="hover:bg-gray-200 border-b pb-2 transition-all delay-100">
-    <HoverCard>
-      <HoverCardTrigger className="font-medium">@malikpiara</HoverCardTrigger>.
-      <HoverCardContent className="w-80">
-        <div className="flex justify-between space-x-4">
-          <Avatar>
-                    <AvatarImage src="https://media.licdn.com/dms/image/D4E03AQEOLaIfFwqJOQ/profile-displayphoto-shrink_800_800/0/1700920157587?e=1722470400&v=beta&t=6kuXPp-PBEDI_nZh8TsaZY9Gh5S8as3dfPTyZf9LDJM" />
-                    <AvatarFallback>M</AvatarFallback>
-          </Avatar>
-  <div className="space-y-1">
-            <h4 className="font-semibold">Malik Piara</h4>
-            <p className="text-sm">
-            Product Manager e Embaixador da Outono em Berlim.
-            </p>
-            <div className="flex items-center pt-2">
-              
-              <span className="text-xs text-muted-foreground">
-                Desde Junho 2024
-              </span>
-            </div></div>
-    </div>
-  </HoverCardContent>
-</HoverCard></button>
+    entra em contacto.</button>
   </DrawerTrigger>
   <DrawerContent>
     <DrawerHeader>
@@ -123,7 +96,7 @@ export default function Home() {
 </Drawer>
 </p>
 
-<h2 className="text-2xl mb-3 mt-8 tracking-tight font-semibold">Pessoas</h2>
+<h2 id="berlin" className="text-2xl mb-3 mt-8 tracking-tight font-semibold">Pessoas</h2>
       <p className="mb-3 text-lg text-gray-800 leading-7 [&:not(:first-child)]:mt-6">Conhece alguns dos elementos que já integram a nossa comunidade em Berlim.</p>
       </div>
 
