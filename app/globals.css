@@ -3,7 +3,7 @@
   @tailwind utilities;
   
   .animate-in {
-    animation: animateIn 0.9s ease 0.30s both;
+    animation: animateIn 0.5s ease-out 0.2s both;
   }
   
 body:first-child {
