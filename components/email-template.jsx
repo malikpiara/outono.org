@@ -7,6 +7,7 @@ import { Button, Font, Head, Html, Container, Section, Tailwind, Text } from "@r
 
 const initialPosts = [{
     author: 'Gislaine Zaramella',
+    authorEmail: 'example@outono.org',
     option: 'looking',
     shortMessage: 'talented social media manager and/or social media agency',
     longMessage: `A friend of mine recently launched a new DTC coffee brand based in Nashville, Tennessee.
@@ -16,6 +17,7 @@ They're a fully remote team of six passionate individuals and are currently sear
 If you know someone who might be a great fit or an agency comes to mind, please pass along the details! They're excited to build their brand and connect with coffee lovers everywhere.`,
 }, {
     author: 'Khuyen Bui',
+    authorEmail: 'example@outono.org',
     option: 'offering',
     shortMessage: 'Self-Reboot coaching program',
     longMessage:`Do you or anyone you know need a self-reboot, or a nudge?
@@ -98,7 +100,7 @@ export const EmailTemplate = ({
 
                 <Section className='mt-[32px] mb-[32px'>
                 <Button
-      href={`mailto:example@example.com?subject=Outono&body=Este email é para ${post.author.split(' ')[0]} e mais ninguém consegue ler o que escreveres aqui`}
+      href={`mailto:${post.authorEmail}?subject=Outono&body=Este email é para ${post.author.split(' ')[0]} e mais ninguém consegue ler o que escreveres aqui`}
       style={{ background: "#000000", color: "#ffffff", padding: "10px 20px", borderRadius: "5px" }}
     >
       Reply to {post.author.split(' ')[0]}

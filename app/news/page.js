@@ -46,11 +46,13 @@ import {
 
 // Dummy data to test the reactivity of the platform
 const user = {
-    name: 'Malik Piara'
+    name: 'Malik Piara',
+    email: 'malik@outono.org'
 }
 
 const initialPosts = [{
     author: 'Gislaine Zaramella',
+    authorEmail: 'example@outono.org',
     option: 'looking',
     shortMessage: 'talented social media manager and/or social media agency',
     longMessage: `A friend of mine recently launched a new DTC coffee brand based in Nashville, Tennessee.
@@ -60,6 +62,7 @@ They're a fully remote team of six passionate individuals and are currently sear
 If you know someone who might be a great fit or an agency comes to mind, please pass along the details! They're excited to build their brand and connect with coffee lovers everywhere.`,
 }, {
     author: 'Khuyen Bui',
+    authorEmail: 'example@outono.org',
     option: 'offering',
     shortMessage: 'Self-Reboot coaching program',
     longMessage:`Do you or anyone you know need a self-reboot, or a nudge?
@@ -112,7 +115,7 @@ export default function Home() {
       <div className="space-y-8">
       {posts.map((post, i) => { return (
        
-    <CardWithForm key={i} author={post.author} option={post.option} shortMessage={post.shortMessage} longMessage={post.longMessage}/> 
+    <CardWithForm key={i} author={post.author} authorEmail={post.authorEmail} option={post.option} shortMessage={post.shortMessage} longMessage={post.longMessage}/> 
     
       )
       })}
@@ -128,7 +131,7 @@ export default function Home() {
 
 
 
-export function CardWithForm({ author, option, shortMessage, longMessage }) {
+export function CardWithForm({ author, option, shortMessage, longMessage, authorEmail }) {
     const [formMessage, setFormMessage] = useState('');
     
     function renderMessageWithLinks(message) {
@@ -210,7 +213,7 @@ export function CardWithForm({ author, option, shortMessage, longMessage }) {
       </CardContent>
       <CardFooter className="flex justify-between">
         <div/>
-        <Button><Link href={`mailto:example@example.com?subject=Outono&body=Este email é para ${author.split(' ')[0]} e mais ninguém consegue ler o que escreveres aqui :) %0D%0A%0D%0A%0D%0A ${formMessage}`}>Reply to {author.split(' ')[0]}</Link></Button>
+        <Button><Link href={`mailto:${authorEmail}?subject=Outono&body=Este email é para ${author.split(' ')[0]} e mais ninguém consegue ler o que escreveres aqui :) %0D%0A%0D%0A%0D%0A ${formMessage}`}>Reply to {author.split(' ')[0]}</Link></Button>
       </CardFooter>
     </Card>
   )
@@ -224,6 +227,7 @@ export function CardWithFormToShare({ onAddPost }) {
     const handleSharePost = () => {
         onAddPost({
             author: user.name,
+            authorEmail: user.email,
             option: option, // There's a bug here because I'm using 2 different types
             shortMessage: shortMessage,
             longMessage: longMessage,
