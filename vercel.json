@@ -6,7 +6,8 @@
         },
         {
             "path": "/api/send",
-            "schedule": "0 10 * * *"
+            "schedule": "0 10 * * *",
+            "method": "POST"
         }
     ]
 }
