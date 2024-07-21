@@ -5,10 +5,6 @@
             "schedule": "0 10 * * *"
         },
         {
-            "path": "/api/send",
-            "schedule": "0 10 * * *"
-        },
-        {
             "path": "/api/sendVercel",
             "schedule": "0 10 * * *"
         }
