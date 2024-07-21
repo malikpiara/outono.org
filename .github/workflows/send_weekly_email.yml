@@ -3,6 +3,7 @@ name: Send Weekly Email
 on:
   schedule:
     - cron: "0 10 * * *" # Run at 10:00 AM UTC every day
+  workflow_dispatch: # Add this line for manual triggering
 
 jobs:
   send_email:
