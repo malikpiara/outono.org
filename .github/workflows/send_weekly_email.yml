@@ -1,0 +1,35 @@
+name: Send Weekly Email
+
+on:
+  schedule:
+    - cron: '0 10 * * *' # Run at 10:00 AM UTC every day
+
+jobs:
+  send_email:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20' # Or your preferred version
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Build Next.js Project
+        run: pnpm run build
+
+      - name: Run API Route (or Script)
+        run: |
+          # 1. Fetch posts from Supabase
+          # 2. Generate email content using EmailTemplate
+          # 3. Send email using Resend
+          node ./app/api/send/route.js # Replace with your API route path or script path
+
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
