@@ -35,7 +35,7 @@ Ps: my name Khuyến means "encourage" in Vietnamese.`
 }]
 
 export const EmailTemplate = ({
-  firstName,
+  firstName, posts
 }) => (
   <Html>
     <Head>
@@ -55,16 +55,16 @@ export const EmailTemplate = ({
     <h2 className='text-2xl mb-3 mt-8 tracking-tight font-semibold'>Resumo</h2>
   
     <div>
-      {initialPosts.map((post, i) => { return (
+      {posts.map((post, i) => { return (
         <>
             <Text className='leading-[24px]'>
        <span>{i+1}.{" "}</span>
-                <span className='font-semibold'>{post.author}</span>
+                <span className='font-semibold'>{post.profiles.full_name}</span>
                 {" "}
                 is looking for
                 {" "}
                 <span className="text-orange-600">
-                {post.shortMessage}.
+                {post.short_message}.
                 </span>
             </Text>
           
@@ -80,7 +80,7 @@ export const EmailTemplate = ({
     
     <h2 className='text-2xl mb-3 mt-4 tracking-tight font-semibold'>Detalhes</h2>
     <div>
-      {initialPosts.map((post, i) => { return (
+      {posts.map((post, i) => { return (
         <>
        <div
        key={i}
@@ -88,22 +88,22 @@ export const EmailTemplate = ({
           <div className="border border-solid border-[#eaeaea] rounded my-[20px] p-[20px]">
             
                 <Text className='leading-[0px]'>
-                  <strong>{post.author}</strong>{" "} is looking for
+                  <strong>{post.profiles.full_name}</strong>{" "} is looking for
                 </Text>
                 <Text className="text-orange-600">
-                {post.shortMessage}.
+                {post.short_message}.
                 </Text>
 
                 
                 <div className='text-slate-600 leading-[24px]'>
-                  <Text> {post.longMessage} </Text>
+                  <Text> {post.long_message} </Text>
 
                 <Section className='mt-[32px] mb-[32px'>
                 <Button
-      href={`mailto:${post.authorEmail}?subject=Outono&body=Este email é para ${post.author.split(' ')[0]} e mais ninguém consegue ler o que escreveres aqui`}
+      href={`mailto:${post.profiles.email}?subject=Outono&body=Este email é para ${post.profiles.full_name.split(' ')[0]} e mais ninguém consegue ler o que escreveres aqui`}
       style={{ background: "#000000", color: "#ffffff", padding: "10px 20px", borderRadius: "5px" }}
     >
-      Reply to {post.author.split(' ')[0]}
+      Reply to {post.profiles.full_name.split(' ')[0]}
     </Button>
     </Section>
 
