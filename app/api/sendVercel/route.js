@@ -1,4 +1,4 @@
-import { EmailTemplate } from '../../../components/email-template';
+import { EmailTemplate } from '../../../components/email-template.jsx';
 import { Resend } from 'resend';
 import { createClient } from '../../../utils/supabase/client';
 
