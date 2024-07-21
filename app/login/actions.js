@@ -22,10 +22,10 @@ export async function login(formData) {
   }
 
   revalidatePath('/', 'layout')
-  redirect('/account')
+  redirect('/news')
 }
 
-export async function signup(formData) {
+/* export async function signup(formData) {
   const supabase = createClient()
 
   const data = {
@@ -41,4 +41,4 @@ export async function signup(formData) {
 
   revalidatePath('/', 'layout')
   redirect('/account')
-}
+} */

@@ -44,42 +44,12 @@ import {
   AvatarImage,
 } from "@/components/ui/avatar"
 
-const initialPosts = [{
-    author: 'Gislaine Zaramella',
-    authorEmail: 'example@outono.org',
-    option: 'looking',
-    shortMessage: 'talented social media manager and/or social media agency',
-    longMessage: `A friend of mine recently launched a new DTC coffee brand based in Nashville, Tennessee.
-
-They're a fully remote team of six passionate individuals and are currently searching for a talented social media manager to join their growing team. Additionally, any recommendations for marketing agencies with a strong focus on social media expertise would be greatly appreciated!
-
-If you know someone who might be a great fit or an agency comes to mind, please pass along the details! They're excited to build their brand and connect with coffee lovers everywhere.`,
-}, {
-    author: 'Khuyen Bui',
-    authorEmail: 'example@outono.org',
-    option: 'offering',
-    shortMessage: 'Self-Reboot coaching program',
-    longMessage:`Do you or anyone you know need a self-reboot, or a nudge?
-
-I've helped many people say the thing and take the step they know they deep down have to, but haven't.
-
-I'm offering 5 free consultation sessions for my pilot Reboot coaching program, which you'll get clarity on your situation and the courage to take One Small Action on it.
-
-At the end, if you find it helpful and want to do more, we can work out some work together. Of course, you get to decide.
-
-Pls see the post below or msg me, and I'll send you more info.
-
-Maybe this is exactly the nudge you need.
-Ps: my name Khuyến means "encourage" in Vietnamese.`
-}]
-
 export default function Home({ user }) {
   const supabase = createClient()
-
   const [loading, setLoading] = useState(true)
   const [fullname, setFullname] = useState(null)
   const [firstname, setFirstname] = useState(null)
-  const [posts, setPosts] = useState(initialPosts);
+  const [posts, setPosts] = useState([]);
 
   // I think I should create a separate file with my main functions
   // and call them anytime I need to make my code more succint and less prone to errors.
@@ -109,9 +79,35 @@ export default function Home({ user }) {
     }
   }, [user, supabase])
 
+  const getPosts = useCallback(async () => {
+    try {
+      setLoading(true)
+
+      const { data, error, status } = await supabase
+        .from('posts')
+        .select(`
+            *,
+            profiles ( full_name, id, email )
+        `);
+
+      if (error && status !== 406) {
+        throw error
+      }
+
+      if (data) {
+        setPosts(data)
+      }
+    } catch (error) {
+      alert('Error loading data!')
+    } finally {
+      setLoading(false)
+    }
+  }, [supabase])
+
   useEffect(() => {
-    getProfile()
-  }, [user, getProfile])
+    getProfile(),
+    getPosts()
+  }, [user, getProfile, getPosts])
 
     const addPost = (newPost) => {
         setPosts([...posts, newPost]);
@@ -126,32 +122,35 @@ export default function Home({ user }) {
       <h2 className="text-2xl mb-3 mt-8 tracking-tight font-semibold">Resumo</h2>
 
       <div className="space-y-4">
-      {posts.map((post, i) => { return (
-        <>
+
+      {posts && posts.map((post, i) => (
+      
        <div
        key={i}
        className="flex space-x-1"
        >
        <span>{i+1}.</span>
-       <SummaryItem key={i} author={post.author} option={post.option} shortMessage={post.shortMessage}/>
+       <SummaryItem
+       key={post.id}
+       author={post.profiles.full_name}
+       option={post.option}
+       shortMessage={post.short_message}
+       />
        </div>
-       </>
-    
-      )
-      })}
+      ))}
       </div>
 
       <h2 className="text-2xl mb-3 mt-8 tracking-tight font-semibold">Detalhes</h2>
       
       <div className="space-y-8">
-      {posts.map((post, i) => { return (
+      {posts && posts.map((post, i) => (
        
-    <CardWithForm key={i} author={post.author} authorEmail={post.authorEmail} option={post.option} shortMessage={post.shortMessage} longMessage={post.longMessage}/> 
+    <CardWithForm key={post.id} author={post.profiles.full_name} authorEmail={post.profiles.email} option={post.option} shortMessage={post.short_message} longMessage={post.long_message}/>
     
       )
-      })}
+      )}
 
-      <CardWithFormToShare onAddPost={addPost} name={fullname} email={user?.email}/>
+      <CardWithFormToShare onAddPost={addPost} name={fullname} email={user?.email} supabase={supabase} user={user}/>
       </div>
       
       </div>
@@ -250,23 +249,43 @@ export function CardWithForm({ author, option, shortMessage, longMessage, author
   )
 }
 
-export function CardWithFormToShare({ onAddPost, name, email }) {
+export function CardWithFormToShare({ onAddPost, name, email, supabase, user }) {
     const [option, setOption] = useState('');
     const [shortMessage, setShortMessage] = useState('');
     const [longMessage, setLongMessage] = useState('');
 
-    const handleSharePost = () => {
+    const handleSharePost = async () => {try {
+        const { error } = await supabase
+          .from('posts')
+          .insert({
+            author_id: user.id, // Associate the post with the user
+            option: option,
+            short_message: shortMessage,
+            long_message: longMessage,
+          });
+  
+        if (error) throw error;
+  
+        // If successful, update the UI (you can customize this)
         onAddPost({
-            author: name,
-            authorEmail: email,
-            option: option, // There's a bug here because I'm using 2 different types
-            shortMessage: shortMessage,
-            longMessage: longMessage,
+          author: name,
+          authorEmail: email,
+          option,
+          short_message: shortMessage,
+          long_message: longMessage,
+          profiles: {
+            full_name: name,
+            email: email,
+          },
         });
+  
         setOption('');
-    setShortMessage('');
-    setLongMessage('');
-    }
+        setShortMessage('');
+        setLongMessage('');
+      } catch (error) {
+        alert('Error adding post: ' + error.message);
+      }
+    };
     return (
       <Card className="w-[650px]">
         <CardHeader>
