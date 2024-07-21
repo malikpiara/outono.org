@@ -2,7 +2,7 @@ name: Send Weekly Email
 
 on:
   schedule:
-    - cron: "0 10 * * *" # Run at 10:00 AM UTC every day
+    - cron: "0 10 * * 1" # Weekly on Mondays at 10:00 AM UTC
   workflow_dispatch: # Add this line for manual triggering
 
 jobs:
@@ -17,6 +17,9 @@ jobs:
         with:
           node-version: '20' # Or your preferred version
 
+      - name: Install pnpm
+        run: npm install -g pnpm # Install pnpm globally
+
       - name: Install Dependencies
         run: pnpm install
 
@@ -25,12 +28,8 @@ jobs:
 
       - name: Run API Route (or Script)
         run: |
-          node ./app/api/send/route.js # 1. Fetch posts from Supabase
-                                      # 2. Generate email content using EmailTemplate
-                                      # 3. Send email using Resend
-
+          node ./app/api/send/route.js # Fetch posts from Supabase, generate email content, and send email
         env:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-
