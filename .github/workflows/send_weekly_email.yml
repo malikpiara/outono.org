@@ -3,35 +3,17 @@ name: Send Weekly Email
 on:
   schedule:
     - cron: "0 10 * * 1" # Weekly on Mondays at 10:00 AM UTC
-  workflow_dispatch: # Add this line for manual triggering
+  workflow_dispatch:     # Allows manual triggering
 
 jobs:
   send_email:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Send POST Request
+        uses: fjogeleit/http-request-action@v1
         with:
-          node-version: '20' # Or your preferred version
-
-      - name: Install pnpm
-        run: npm install -g pnpm # Install pnpm globally
-
-      - name: Install Dependencies
-        run: pnpm install
-
-      - name: Build Next.js Project
-        run: pnpm run build
-        env:
-          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }} # Ensure the API key is available during the build
-
-      - name: Run API Route (or Script)
-        run: |
-          node ./app/api/send/route.js # Fetch posts from Supabase, generate email content, and send email
-        env:
-          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          url: 'http://outono.org/api/send'
+          method: 'POST'
+          data: '{"key": "value"}' # Optional: add JSON data if your API requires it
+          headers: 'Content-Type: application/json' # Adjust content type as needed
+          # Add any additional headers or authentication if required (e.g., Authorization: Bearer <token>)
