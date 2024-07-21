@@ -44,12 +44,6 @@ import {
   AvatarImage,
 } from "@/components/ui/avatar"
 
-// Dummy data to test the reactivity of the platform
-const userData = {
-    name: 'Malik Piara',
-    email: 'malik@outono.org'
-}
-
 const initialPosts = [{
     author: 'Gislaine Zaramella',
     authorEmail: 'example@outono.org',
@@ -157,7 +151,7 @@ export default function Home({ user }) {
       )
       })}
 
-      <CardWithFormToShare onAddPost={addPost} name={fullname}/>
+      <CardWithFormToShare onAddPost={addPost} name={fullname} email={user?.email}/>
       </div>
       
       </div>
@@ -256,7 +250,7 @@ export function CardWithForm({ author, option, shortMessage, longMessage, author
   )
 }
 
-export function CardWithFormToShare({ onAddPost, name }) {
+export function CardWithFormToShare({ onAddPost, name, email }) {
     const [option, setOption] = useState('');
     const [shortMessage, setShortMessage] = useState('');
     const [longMessage, setLongMessage] = useState('');
@@ -264,7 +258,7 @@ export function CardWithFormToShare({ onAddPost, name }) {
     const handleSharePost = () => {
         onAddPost({
             author: name,
-            authorEmail: userData.email,
+            authorEmail: email,
             option: option, // There's a bug here because I'm using 2 different types
             shortMessage: shortMessage,
             longMessage: longMessage,
