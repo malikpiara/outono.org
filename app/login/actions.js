@@ -12,17 +12,21 @@ export async function login(formData) {
   // in practice, you should validate your inputs
   const data = {
     email: formData.get('email'),
-    password: formData.get('password'),
+    options: {
+      // set this to false if you do not want the user to be automatically signed up
+      shouldCreateUser: false,
+      emailRedirectTo: 'https://example.com/welcome',
+    },
   }
 
-  const { error } = await supabase.auth.signInWithPassword(data)
+  const { error } = await supabase.auth.signInWithOtp(data)
 
   if (error) {
     redirect('/error')
   }
 
   revalidatePath('/', 'layout')
-  redirect('/news')
+  //redirect('/news') TODO: Make login page reactive so users know they got email.
 }
 
 /* export async function signup(formData) {
