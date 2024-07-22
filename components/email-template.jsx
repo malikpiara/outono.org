@@ -33,7 +33,9 @@ export const EmailTemplate = ({
        <span>{i+1}.{" "}</span>
                 <span className='font-semibold'>{post.profiles.full_name}</span>
                 {" "}
-                is looking for
+            {post.option == 'looking' && <span>is looking for</span>}
+            {post.option == 'offering' && <span>is offering</span>}
+            {post.option == 'sharing' && <span>is sharing</span>}
                 {" "}
                 <span className="text-orange-600">
                 {post.short_message}.
@@ -58,7 +60,10 @@ export const EmailTemplate = ({
           <div className="border border-solid border-[#eaeaea] rounded my-[20px] p-[20px]">
             
                 <Text className='leading-[0px]'>
-                  <strong>{post.profiles.full_name}</strong>{" "} is looking for
+                  <strong>{post.profiles.full_name}</strong>{" "}
+                  {post.option == 'looking' && <span>is looking for</span>}
+            {post.option == 'offering' && <span>is offering</span>}
+            {post.option == 'sharing' && <span>is sharing</span>}
                 </Text>
                 <Text className="text-orange-600">
                 {post.short_message}.
