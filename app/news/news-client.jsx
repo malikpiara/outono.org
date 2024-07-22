@@ -114,7 +114,7 @@ export default function Home({ user }) {
       };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between md:p-24 p-4 md:max-w-4xl max-w-7xl m-auto">
+    <main className="flex min-h-screen flex-col items-center justify-between md:p-20 p-4 md:max-w-4xl max-w-7xl m-auto">
      
       <div className="w-full items-center justify-between text-black animate-in">
       <h2 className="text-3xl font-bold mb-3 tracking-tight">👋 Olá {firstname}, estes são os updates da semana</h2>
@@ -182,7 +182,7 @@ export function CardWithForm({ author, option, shortMessage, longMessage, author
                     href={part.startsWith("www.") ? `https://${part}` : part} // Add https:// if needed
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-orange-600 no-underline p-1 rounded-sm  bg-slate-100 bg-opacity-0 hover:bg-opacity-100 transition-all"
+                    className="text-outono no-underline p-1 rounded-md bg-slate-100 bg-opacity-0 hover:bg-opacity-100 transition-all"
                   >
                     {part.split('www.')[1]}
                   </Link>
@@ -198,7 +198,7 @@ export function CardWithForm({ author, option, shortMessage, longMessage, author
       const longMessageWithLinks = renderMessageWithLinks(longMessage);
 
   return (
-    <Card className="w-[650px]">
+    <Card className="md:w-[650px] w-full">
       <CardHeader>
       <div className="flex space-x-4">
           <Avatar>
@@ -213,7 +213,7 @@ export function CardWithForm({ author, option, shortMessage, longMessage, author
             {option == 'sharing' && <span>is sharing</span>}
             </div>
             
-            <p className="text-sm text-orange-600">
+            <p className="text-sm text-outono">
             {shortMessage}
             </p>
             
@@ -287,7 +287,7 @@ export function CardWithFormToShare({ onAddPost, name, email, supabase, user }) 
       }
     };
     return (
-      <Card className="w-[650px]">
+      <Card className="md:w-[650px] w-full">
         <CardHeader>
         <div className="flex space-x-4">
             <Avatar>
@@ -353,7 +353,7 @@ export function CardWithFormToShare({ onAddPost, name, email, supabase, user }) 
                 {option == 'looking' && <span>is looking for</span>}
                 {option == 'offering' && <span>is offering</span>}
                 {option == 'sharing' && <span>is sharing</span>}
-                <span className="text-sm text-orange-600">
+                <span className="text-sm text-outono">
                 {shortMessage}.
                 </span>
             </div>
