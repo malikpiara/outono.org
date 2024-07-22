@@ -18,7 +18,7 @@ export async function POST() {
 
     // 2. Send the email, passing posts as a prop:
     const { data, error } = await resend.emails.send({
-      from: 'Outono <onboarding@resend.dev>', // berlin@outono.org
+      from: 'Outono <berlin@mail.outono.org>',
       to: ['delivered@resend.dev'], // TODO: replace
       subject: 'Outono: Update Semanal',
       react: EmailTemplate({ firstName: 'Malik', posts }), // TODO: replace dynamically
