@@ -32,30 +32,36 @@ export async function POST(request) {
 
     if (profilesError) throw profilesError;
 
-    for (const user of profiles) {
-      // According to the console.log, the full_name is not accessible. It makes sense because it is
-      // stored in the profiles table.
+    const emails = profiles.map(user => {
       const firstName = user.full_name.split(' ')[0];
-      const link = `${process.env.NEXT_PUBLIC_SITE_URL}/login?email=${user.email}`
+      const link = `${process.env.NEXT_PUBLIC_SITE_URL}/login?email=${user.email}`;
 
-      try {
-      await resend.batch.send({
+      return {
         from: 'Outono <berlin@mail.outono.org>',
-        to: user.email, // ['delivered@resend.dev'] for testing
+        to: user.email,
         subject: 'Outono: Update Semanal',
         react: EmailTemplate({ 
           firstName, 
           posts,
           link 
         }),
-      });
-      console.log(`Email sent successfully to ${user.email}`);
-      } catch (emailError) {
-        console.error(`Error sending email to ${user.email}:`, emailError);
-      }
-    }
+      };
+    });
 
-    return Response.json({ message: 'Emails sent successfully' });
+    try {
+      const { data, error } = await resend.batch.send(emails);
+
+      if (error) {
+        console.error('Error sending batch emails:', error);
+        return Response.json({ error: error.message }, { status: 500 });
+      }
+
+      console.log('Batch emails sent successfully:', data);
+      return Response.json({ message: 'Emails sent successfully' });
+    } catch (emailError) {
+      console.error('Error sending batch emails:', emailError);
+      return Response.json({ error: emailError.message }, { status: 500 });
+    }
   } catch (error) {
     console.error('Error:', error);
     return Response.json({ error: error.message }, { status: 500 });
