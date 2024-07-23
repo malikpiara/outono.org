@@ -76,8 +76,11 @@ export const EmailTemplate = ({
 
                 
                 <div className='text-slate-600 leading-[24px]'>
-                  <Text> {post.long_message} </Text>
-
+                  
+                  {post.long_message.split('\n').map((line, index) => (
+    <Text key={index}>{line}</Text>
+  ))}
+                  
                 <Section className='mt-[32px] mb-[22px]'>
                 <Button
       href={`mailto:${post.profiles.email}?subject=Outono&body=Este email é para ${post.profiles.full_name.split(' ')[0]} e mais ninguém consegue ler o que escreveres aqui`}
