@@ -35,7 +35,7 @@ export default function RootLayout({ children }) {
   <MenubarMenu>
   <MenubarTrigger>Pessoas</MenubarTrigger>
   <MenubarContent>
-      <MenubarItem><Link href='#berlin'>Berlim</Link></MenubarItem>
+      <MenubarItem><Link href='/#berlin'>Berlim</Link></MenubarItem>
     </MenubarContent>
   </MenubarMenu>
 </Menubar>
