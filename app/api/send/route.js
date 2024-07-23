@@ -39,7 +39,7 @@ export async function POST(request) {
       const link = `${process.env.NEXT_PUBLIC_SITE_URL}/login?email=${user.email}`
 
       try {
-      await resend.emails.send({
+      await resend.batch.send({
         from: 'Outono <berlin@mail.outono.org>',
         to: user.email, // ['delivered@resend.dev'] for testing
         subject: 'Outono: Update Semanal',
