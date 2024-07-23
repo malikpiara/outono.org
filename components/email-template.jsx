@@ -7,7 +7,7 @@ import { Button, Font, Head, Html, Container, Section, Tailwind, Text } from "@r
 
 
 export const EmailTemplate = ({
-  firstName, posts
+  firstName, posts, link
 }) => (
   <Html>
     <Head>
@@ -92,7 +92,7 @@ export const EmailTemplate = ({
       </Section>
       <Section>
       <Button
-      href='https://outono.org/news'
+      href={link}
       style={{ background: "#000000", color: "#ffffff", padding: "10px 20px", borderRadius: "5px" }}
     >
       Faz a tua partilha

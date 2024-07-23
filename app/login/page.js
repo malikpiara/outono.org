@@ -1,4 +1,4 @@
-import Home from "./news-client"
+import LoginComponent from './login'
 import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 
@@ -7,15 +7,15 @@ export default async function HomeN() {
 
   const { data: { session } } = await supabase.auth.getSession()
 
-  if (!session) {
-    redirect('/login')
+  if (session) {
+    redirect('/news')
   }
 
   const {
     data: { user },
   } = await supabase.auth.getUser()
 
-  return <Home user={user}/>
+  return <LoginComponent/>
  
 }
 
