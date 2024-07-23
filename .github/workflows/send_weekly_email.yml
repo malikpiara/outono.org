@@ -18,12 +18,14 @@ jobs:
           contentType: 'application/json'
           bearerToken: ${{ secrets.API_SECRET_KEY }}
           data: '{}'
+          timeout: 300000  # 5 minutes in milliseconds
         env:
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
           NEXT_PUBLIC_SITE_URL: ${{ secrets.NEXT_PUBLIC_SITE_URL }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
 
       - name: Log Response
+        if: always()
         run: |
           echo "Status code: ${{ steps.send_request.outputs.status }}"
           echo "Response body: ${{ steps.send_request.outputs.response }}"
@@ -31,6 +33,6 @@ jobs:
       - name: Check for errors
         if: steps.send_request.outputs.status != '200'
         run: |
-          echo "Error sending emails. Status code: ${{ steps.send_request.outputs.status }}"
+          echo "Error or no response received. Status code: ${{ steps.send_request.outputs.status }}"
           echo "Response: ${{ steps.send_request.outputs.response }}"
           exit 1
