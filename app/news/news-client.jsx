@@ -170,28 +170,36 @@ export function CardWithForm({ author, option, shortMessage, longMessage, author
         }
         
         // Regex to catch www. and https.
-        const linkRegex = /(https?:\/\/[^\s]+|www\.[^\s]+)/g; 
+        const linkRegex = /(https?:\/\/\S+|www\.\S+)/gi; 
     
         return message.split('\n').map((line, lineIndex) => (
           <p key={lineIndex}>
-            {line.split(linkRegex).map((part, partIndex) => {
-              if (part.match(linkRegex)) {
-                return (
-                  <Link
-                    key={partIndex}
-                    href={part.startsWith("www.") ? `https://${part}` : part} // Add https:// if needed
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-outono no-underline p-1 rounded-md bg-slate-100 bg-opacity-0 hover:bg-opacity-100 transition-all"
-                  >
-                    {part.split('www.')[1]}
-                  </Link>
-                );
-              } else {
-                return part;
-              }
-            })}
-          </p>
+  {line.split(linkRegex).map((part, partIndex) => {
+    if (part.match(linkRegex)) {
+      const href = part.startsWith("www.") ? `https://${part}` : part;
+      let displayText = part;
+      
+      // Remove common prefixes from display text
+      if (displayText.startsWith("https://")) displayText = displayText.slice(8);
+      else if (displayText.startsWith("http://")) displayText = displayText.slice(7);
+      if (displayText.startsWith("www.")) displayText = displayText.slice(4);
+      
+      return (
+        <Link
+          key={partIndex}
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-outono no-underline p-1 rounded-md bg-slate-100 bg-opacity-0 hover:bg-opacity-100 transition-all"
+        >
+          {displayText}
+        </Link>
+      );
+    } else {
+      return part;
+    }
+  })}
+</p>
         ));
       }
     
@@ -231,6 +239,7 @@ export function CardWithForm({ author, option, shortMessage, longMessage, author
         <form className="space-y-4">
               <Label htmlFor="name" className='text-base'>Can you help {author.split(' ')[0]}?</Label>
               <Textarea
+              className='hover:border-black transition-all'
               placeholder="Escreve a tua mensagem aqui."
               value={formMessage}
               onChange={(e) => setFormMessage(e.target.value)}
