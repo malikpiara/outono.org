@@ -12,9 +12,8 @@ jobs:
         with:
           url: 'https://outono.org/api/send'
           method: 'POST'
-          headers: |
-            Content-Type: application/json
-            Authorization: Bearer ${{ secrets.API_SECRET_KEY }}
+          contentType: 'application/json'
+          bearerToken: ${{ secrets.API_SECRET_KEY }}
           data: '{}'
         env:
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
