@@ -1,13 +1,16 @@
 name: Send Weekly Email
+
 on:
   schedule:
     - cron: "0 10 * * 1" # Weekly on Mondays at 10:00 AM UTC
-  workflow_dispatch:     # Allows manual triggering
+  workflow_dispatch: # Allows manual triggering
+
 jobs:
   send_email:
     runs-on: ubuntu-latest
     steps:
       - name: Send POST Request
+        id: send_request
         uses: fjogeleit/http-request-action@v1
         with:
           url: 'https://outono.org/api/send'
@@ -19,3 +22,15 @@ jobs:
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
           NEXT_PUBLIC_SITE_URL: ${{ secrets.NEXT_PUBLIC_SITE_URL }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+
+      - name: Log Response
+        run: |
+          echo "Status code: ${{ steps.send_request.outputs.status }}"
+          echo "Response body: ${{ steps.send_request.outputs.response }}"
+
+      - name: Check for errors
+        if: steps.send_request.outputs.status != '200'
+        run: |
+          echo "Error sending emails. Status code: ${{ steps.send_request.outputs.status }}"
+          echo "Response: ${{ steps.send_request.outputs.response }}"
+          exit 1
