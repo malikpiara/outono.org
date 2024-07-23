@@ -336,6 +336,7 @@ export function CardWithFormToShare({ onAddPost, name, email, supabase, user }) 
             <div className="flex w-full flex-col  gap-4">
                 <Label htmlFor="name" className='text-base'>Mais Detalhes</Label>
                 <Textarea
+                className='hover:border-black transition-all'
                 placeholder="Escreve a tua mensagem aqui."
                 value={longMessage}
                 onChange={(e) => setLongMessage(e.target.value)}
