@@ -25,20 +25,20 @@ export async function POST(request) {
 
     if (postError) throw postError;
 
-    // Fetch users
-    const { data: { users }, error: usersError } = await supabase.auth.admin.listUsers();
+    // Fetch users with their profiles
+    const { data: profiles, error: profilesError } = await supabase
+      .from('profiles')
+      .select('id, full_name, email');
 
-    if (usersError) throw usersError;
+    if (profilesError) throw profilesError;
 
-    for (const user of users) {
+    for (const user of profiles) {
       // According to the console.log, the full_name is not accessible. It makes sense because it is
       // stored in the profiles table.
-      const firstName = user.user_metadata.full_name; // Add split(' ')[0] when ready.
+      const firstName = user.full_name.split(' ')[0];
       const link = `${process.env.NEXT_PUBLIC_SITE_URL}/login?email=${user.email}`
 
-      // Trying to debug and see what we're getting from the user metadata.
-      console.log(user.user_metadata)
-
+      try {
       await resend.emails.send({
         from: 'Outono <berlin@mail.outono.org>',
         to: user.email, // ['delivered@resend.dev'] for testing
@@ -49,6 +49,10 @@ export async function POST(request) {
           link 
         }),
       });
+      console.log(`Email sent successfully to ${user.email}`);
+      } catch (emailError) {
+        console.error(`Error sending email to ${user.email}:`, emailError);
+      }
     }
 
     return Response.json({ message: 'Emails sent successfully' });
