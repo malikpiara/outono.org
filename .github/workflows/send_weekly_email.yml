@@ -1,10 +1,8 @@
 name: Send Weekly Email
-
 on:
   schedule:
     - cron: "0 10 * * 1" # Weekly on Mondays at 10:00 AM UTC
   workflow_dispatch:     # Allows manual triggering
-
 jobs:
   send_email:
     runs-on: ubuntu-latest
@@ -12,8 +10,13 @@ jobs:
       - name: Send POST Request
         uses: fjogeleit/http-request-action@v1
         with:
-          url: 'http://outono.org/api/send'
+          url: 'https://outono.org/api/send'
           method: 'POST'
-          data: '{"key": "value"}' # Optional: add JSON data if your API requires it
-          headers: 'Content-Type: application/json' # Adjust content type as needed
-          # Add any additional headers or authentication if required (e.g., Authorization: Bearer <token>)
+          headers: |
+            Content-Type: application/json
+            Authorization: Bearer ${{ secrets.API_SECRET_KEY }}
+          data: '{}'
+        env:
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          NEXT_PUBLIC_SITE_URL: ${{ secrets.NEXT_PUBLIC_SITE_URL }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
