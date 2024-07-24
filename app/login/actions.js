@@ -26,7 +26,6 @@ export async function login(formData) {
   }
 
   revalidatePath('/', 'layout')
-  //redirect('/news') TODO: Make login page reactive so users know they got email.
 }
 
 /* export async function signup(formData) {

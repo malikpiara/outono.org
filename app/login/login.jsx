@@ -2,42 +2,46 @@
 import React, { useEffect, useState } from 'react';
 import { login } from './actions';
 import { toast, Toaster } from 'sonner';
-
 import Link from "next/link"
-
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
-export default function LoginComponent() {
-    const [email, setEmail] = useState('');
+export default function LoginComponent({ initialEmail, initialFullName }) {
+  const [email, setEmail] = useState(initialEmail || '');
+  const [fullName, setFullName] = useState(initialFullName || '');
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const emailParam = params.get('email');
-    if (emailParam) {
-      setEmail(emailParam);
+    if (searchParams.get('email')) {
+      // Clean the URL
+      router.replace('/login', undefined, { shallow: true });
     }
-  }, []);
+  }, [searchParams, router]);
+
   return (
     <>
-    <div className="w-full lg:grid lg:grid-cols-2 lg:min-h-[800px] h-screen">
-        <div className="hidden lg:block bg-amber-900 bg-opacity-10 mx-3 mb-3 rounded-lg h-[93vh]">
+    <div className="w-full md:grid md:grid-cols-2 h-full">
+        <div className="hidden md:block bg-amber-900 bg-opacity-10 mx-3 rounded-lg h-[93vh]">
         <div className='absolute top-16 left-10 text-slate-600 text-xl font-medium'>Outono</div>
-        
-        {/* <div className='absolute bottom-10 left-5 prose prose-blockquote:not-italic text-black z-50'>
-        <blockquote className="border-l-2 pl-6 mb-0 text-black text-lg">
-        &quot;This library has saved me countless hours of work and helped me deliver stunning designs to my clients faster than ever before.&quot;
-    </blockquote>
-    <small className='border-l-2 pl-6'>Joana Dias</small>
-        </div> */}
-      </div>
-      <div className="flex items-center justify-center py-12">
+        </div>
+      <div className="flex items-center justify-center py-12 h-[93vh]">
         <div className="mx-auto grid w-[350px] gap-6">
           <div className="grid gap-2 text-center lg:-mt-20">
-            <h1 className="text-3xl font-bold">Entra na Outono</h1>
+            
+          {fullName ? (
+              <>
+              <h1 className="text-3xl font-bold">👋 Olá, {fullName.split(' ')[0]}!</h1>
+              </>
+              ) : (
+                <>
+                <h1 className="text-3xl font-bold">Entra na Outono</h1>
+                </>
+              )}
             <p className="text-balance text-muted-foreground">
-              Vais receber um link para entrar na plataforma via email.
+              Ao clicar em entrar, vais receber um link para entrar na plataforma via email.
             </p>
           </div>
           <div className="grid gap-4">
@@ -67,25 +71,13 @@ export default function LoginComponent() {
             >
               Entrar
             </Button>
+            
                 </form>
-            {/* <Button variant="outline" className="w-full">
-              Login with Google
-            </Button> */}
           </div>
-          {/* <div className="mt-4 text-center text-sm">
-            Don&apos;t have an account?{" "}
-            <Link href="#" className="underline">
-              Sign up
-            </Link>
-          </div> */}
         </div>
       </div>
     </div>
     <Toaster />
     </>
-    
   )
 }
-
-
-
