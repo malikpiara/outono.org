@@ -5,6 +5,7 @@ import { Mail, Send, MessageCircle} from "lucide-react"
 import Link from "next/link"
 import { createClient } from '@/utils/supabase/client'
 import { useState, useCallback, useEffect } from "react"
+import { toast, Toaster } from 'sonner';
 
 import {
   Card,
@@ -114,6 +115,7 @@ export default function Home({ user }) {
       };
 
   return (
+    <>
     <main className="flex min-h-screen flex-col items-center justify-between md:p-20 p-4 md:max-w-4xl max-w-7xl m-auto">
      
       <div className="w-full items-center justify-between text-black animate-in">
@@ -145,7 +147,7 @@ export default function Home({ user }) {
       <div className="space-y-8">
       {posts && posts.map((post, i) => (
        
-    <CardWithForm key={post.id} author={post.profiles.full_name} authorEmail={post.profiles.email} option={post.option} shortMessage={post.short_message} longMessage={post.long_message}/>
+    <CardWithForm key={post.id} author={post.profiles.full_name} authorEmail={post.profiles.email} option={post.option} shortMessage={post.short_message} longMessage={post.long_message} firstName={fullname.split(' ')[0]}/>
     
       )
       )}
@@ -156,12 +158,14 @@ export default function Home({ user }) {
       </div>
 
     </main>
+    <Toaster />
+    </>
   );
 }
 
 
 
-export function CardWithForm({ author, option, shortMessage, longMessage, authorEmail }) {
+export function CardWithForm({ author, option, shortMessage, longMessage, authorEmail, firstName }) {
     const [formMessage, setFormMessage] = useState('');
     
     function renderMessageWithLinks(message) {
@@ -252,7 +256,8 @@ export function CardWithForm({ author, option, shortMessage, longMessage, author
       </CardContent>
       <CardFooter className="flex justify-between">
         <div/>
-        <Button><Link href={`mailto:${authorEmail}?subject=Outono&body=Este email é para ${author.split(' ')[0]} e mais ninguém consegue ler o que escreveres aqui :) %0D%0A%0D%0A%0D%0A ${formMessage}`}>Reply to {author.split(' ')[0]}</Link></Button>
+        <Button>
+          <Link href={`mailto:${authorEmail}?subject=Outono&body=Este email é para ${author.split(' ')[0]} e mais ninguém consegue ler o que escreveres aqui :) %0D%0A%0D%0A%0D%0A ${formMessage}`}>Reply to {author.split(' ')[0]}</Link></Button>
       </CardFooter>
     </Card>
   )
@@ -348,7 +353,16 @@ export function CardWithFormToShare({ onAddPost, name, email, supabase, user }) 
         </CardContent>
         <CardFooter className="flex justify-between">
           <div/>
-          <Button onClick={handleSharePost}>Share your post</Button>
+          <Button
+            onClick={() => {
+              handleSharePost();
+              toast(`🎉 Obrigado por contribuires, ${name.split(' ')[0]}!`, {
+                description: "O teu post foi publicado com sucesso e vai ser partilhado na próxima edição da newsletter.",
+              });
+            }}
+            >
+              Share your post
+          </Button>
         </CardFooter>
       </Card>
     )
