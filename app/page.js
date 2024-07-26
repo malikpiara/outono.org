@@ -24,6 +24,8 @@ import PeopleSection from "@/components/peopleSection"
 
 export default function Home() {
   return (
+    <>
+    <Motto/>
     <main className="flex min-h-screen flex-col items-center justify-between md:p-24 p-4 md:max-w-4xl max-w-7xl m-auto">
       <div
             className='absolute inset-x-0 bottom-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-10'
@@ -103,5 +105,15 @@ export default function Home() {
       <PeopleSection/>
 
     </main>
+    </>
+    
+  );
+}
+
+export function Motto() {
+  return (
+    <p className='uppercase text-xs [writing-mode:vertical-lr] rotate-180 fixed bottom-20 tracking-wider mx-3 hover:text-tertiary max-sm:hidden transition-all duration-300 cursor-default text-slate-500'>
+      Only you know who you can be
+    </p>
   );
 }
