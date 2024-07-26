@@ -119,7 +119,7 @@ export default function Home({ user }) {
     <main className="flex min-h-screen flex-col items-center justify-between md:p-20 p-4 md:max-w-4xl max-w-7xl m-auto">
      
       <div className="w-full items-center justify-between text-black animate-in">
-      <h2 className="text-3xl font-bold mb-3 tracking-tight">👋 Olá {firstname}, estes são os updates da semana</h2>
+      {firstname && <h2 className="text-3xl font-bold mb-3 tracking-tight">👋 Olá {firstname}, estes são os updates da semana</h2>}
 
       <h2 className="text-2xl mb-3 mt-8 tracking-tight font-semibold">Resumo</h2>
 
@@ -147,7 +147,7 @@ export default function Home({ user }) {
       <div className="space-y-8">
       {posts && posts.map((post, i) => (
        
-    <CardWithForm key={post.id} author={post.profiles.full_name} authorEmail={post.profiles.email} option={post.option} shortMessage={post.short_message} longMessage={post.long_message} firstName={fullname.split(' ')[0]}/>
+    <CardWithForm key={post.id} author={post.profiles.full_name} authorEmail={post.profiles.email} option={post.option} shortMessage={post.short_message} longMessage={post.long_message} />
     
       )
       )}
@@ -165,7 +165,7 @@ export default function Home({ user }) {
 
 
 
-export function CardWithForm({ author, option, shortMessage, longMessage, authorEmail, firstName }) {
+export function CardWithForm({ author, option, shortMessage, longMessage, authorEmail }) {
     const [formMessage, setFormMessage] = useState('');
     
     function renderMessageWithLinks(message) {
@@ -215,7 +215,7 @@ export function CardWithForm({ author, option, shortMessage, longMessage, author
       <div className="flex space-x-4">
           <Avatar>
             <AvatarImage src="#" />
-            <AvatarFallback>{author[0]}</AvatarFallback>
+            <AvatarFallback>{author? author[0] : 'U'}</AvatarFallback>
           </Avatar>
           <div className="space-y-1">
             <div className="flex text-center items-center gap-1">
@@ -243,7 +243,6 @@ export function CardWithForm({ author, option, shortMessage, longMessage, author
         <form className="space-y-4">
               <Label htmlFor="name" className='text-base'>Can you help {author.split(' ')[0]}?</Label>
               <Textarea
-              className='hover:border-black transition-all'
               placeholder="Escreve a tua mensagem aqui."
               value={formMessage}
               onChange={(e) => setFormMessage(e.target.value)}
@@ -341,7 +340,6 @@ export function CardWithFormToShare({ onAddPost, name, email, supabase, user }) 
             <div className="flex w-full flex-col  gap-4">
                 <Label htmlFor="name" className='text-base'>Mais Detalhes</Label>
                 <Textarea
-                className='hover:border-black transition-all'
                 placeholder="Escreve a tua mensagem aqui."
                 value={longMessage}
                 onChange={(e) => setLongMessage(e.target.value)}
@@ -356,7 +354,7 @@ export function CardWithFormToShare({ onAddPost, name, email, supabase, user }) 
           <Button
             onClick={() => {
               handleSharePost();
-              toast(`🎉 Obrigado por contribuires, ${name.split(' ')[0]}!`, {
+              toast(`🎉 Obrigado por contribuires, ${name ? name.split(' ')[0] : ''}!'`, {
                 description: "O teu post foi publicado com sucesso e vai ser partilhado na próxima edição da newsletter.",
               });
             }}
