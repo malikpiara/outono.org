@@ -7,6 +7,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import BlobAnimation from './blob';
 
 export default function LoginComponent({ initialEmail, initialFullName }) {
   const [email, setEmail] = useState(initialEmail || '');
@@ -25,6 +26,7 @@ export default function LoginComponent({ initialEmail, initialFullName }) {
     <>
     <div className="w-full md:grid md:grid-cols-2 h-full">
         <div className="hidden md:block bg-amber-900 bg-opacity-10 mx-3 rounded-lg h-[93vh]">
+          <BlobAnimation/>
         <div className='absolute top-16 left-10 text-slate-600 text-xl font-medium'>Outono</div>
         </div>
       <div className="flex items-center justify-center py-12 h-[93vh]">
@@ -81,3 +83,4 @@ export default function LoginComponent({ initialEmail, initialFullName }) {
     </>
   )
 }
+

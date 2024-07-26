@@ -71,6 +71,9 @@ module.exports = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        'circular': 'circular 20s ease-in-out infinite',
+        'circular2': 'circular2 40s ease-in-out infinite',
+        'circular-slow': 'circular 60s ease-in-out infinite',
       },
     },
   },

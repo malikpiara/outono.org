@@ -21,6 +21,20 @@ body:first-child {
     }
   }
 
+  @keyframes circular {
+    0%, 100% { transform: translate(0, -150px); }
+    25% { transform: translate(150px, 0); }
+    50% { transform: translate(0, 150px); }
+    75% { transform: translate(-150px, 0); }
+  }
+  
+  @keyframes circular2 {
+    0%, 100% { transform: translate(0, 150px); }
+    25% { transform: translate(-150px, 0); }
+    50% { transform: translate(0, -150px); }
+    75% { transform: translate(150px, 0); }
+  }
+
   @layer base {
     :root {
       --background: 0 0% 100%;
