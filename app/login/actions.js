@@ -1,12 +1,12 @@
-'use server'
+'use server';
 
-import { revalidatePath } from 'next/cache'
-import { redirect } from 'next/navigation'
+import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 
-import { createClient } from '@/utils/supabase/server'
+import { createClient } from '@/utils/supabase/server';
 
 export async function login(formData) {
-  const supabase = createClient()
+  const supabase = createClient();
 
   // type-casting here for convenience
   // in practice, you should validate your inputs
@@ -17,15 +17,15 @@ export async function login(formData) {
       shouldCreateUser: false,
       emailRedirectTo: 'https://example.com/welcome',
     },
-  }
+  };
 
-  const { error } = await supabase.auth.signInWithOtp(data)
+  const { error } = await supabase.auth.signInWithOtp(data);
 
   if (error) {
-    redirect('/error')
+    redirect('/error');
   }
 
-  revalidatePath('/', 'layout')
+  revalidatePath('/', 'layout');
 }
 
 /* export async function signup(formData) {

@@ -1,4 +1,4 @@
-import { createClient } from '@supabase/supabase-js'
+import { createClient } from '@supabase/supabase-js';
 import { Resend } from 'resend';
 import { EmailTemplate } from '../../../components/email-template.jsx';
 import { v4 as uuidv4 } from 'uuid';
@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
   process.env.SUPABASE_SERVICE_ROLE_KEY
-)
+);
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -32,7 +32,7 @@ export async function POST(request) {
 
     if (profilesError) throw profilesError;
 
-    const emails = profiles.map(user => {
+    const emails = profiles.map((user) => {
       const firstName = user.full_name.split(' ')[0];
       const link = `${process.env.NEXT_PUBLIC_SITE_URL}/login?email=${user.email}`;
 
@@ -40,10 +40,10 @@ export async function POST(request) {
         from: 'Outono <berlin@mail.outono.org>',
         to: user.email,
         subject: 'Outono: Update Semanal',
-        react: EmailTemplate({ 
-          firstName, 
+        react: EmailTemplate({
+          firstName,
           posts,
-          link 
+          link,
         }),
       };
     });

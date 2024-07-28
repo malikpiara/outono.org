@@ -2,7 +2,7 @@ name: Send Weekly Email
 
 on:
   schedule:
-    - cron: "0 10 * * 1" # Weekly on Mondays at 10:00 AM UTC
+    - cron: '0 10 * * 1' # Weekly on Mondays at 10:00 AM UTC
   workflow_dispatch: # Allows manual triggering
 
 jobs:
@@ -18,7 +18,7 @@ jobs:
           contentType: 'application/json'
           bearerToken: ${{ secrets.API_SECRET_KEY }}
           data: '{}'
-          timeout: 300000  # 5 minutes in milliseconds
+          timeout: 300000 # 5 minutes in milliseconds
         env:
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
           NEXT_PUBLIC_SITE_URL: ${{ secrets.NEXT_PUBLIC_SITE_URL }}

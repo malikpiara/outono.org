@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/utils/supabase/server';
 
-
 // Creating a handler for a GET request to route /auth/confirm
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
