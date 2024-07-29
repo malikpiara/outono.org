@@ -1,7 +1,7 @@
 const people = [
   {
     name: 'Malik Piara',
-    headline: 'Product Enablement at CarByte',
+    headline: 'Product Enablement at RoundTwenty',
     photo: '/malik.jpeg',
     links: {
       linkedin: 'malikpiara',

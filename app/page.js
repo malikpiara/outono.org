@@ -36,90 +36,90 @@ export default function Home() {
           </div>
         </div>
         <main className="w-full md:w-1/2 md:ml-[50%]">
-          <div className="flex flex-col items-center md:items-baseline animate-in m-4 md:m-8 pt-8">
+          <div className="flex flex-col items-center md:items-baseline animate-in m-4 md:m-8 pt-6 md:pt-4">
             <div className="w-full items-center justify-between  animate-in prose">
               <h2 className="text-4xl font-bold mb-3 tracking-tight">Outono</h2>
               <p className="mb-3 text-lg leading-7 text-slate-700 [&:not(:first-child)]:mt-6">
-                Outono simboliza maturação e crescimento. Assim como o Outono
-                nos dá a conhecer a transição para uma nova etapa, acreditamos
-                que o ecossistema tecnológico e empreendedor português está
-                também a atravessar um novo período de inovação e
-                competitividade.
+                O Outono simboliza transição e amadurecimento. Tal como a
+                estação, também nós estamos a atravessar um periodo de mudança,
+                transformação e ambiguidade.
               </p>
 
               <p className="mb-3 text-lg leading-7 text-slate-700 [&:not(:first-child)]:mt-6">
-                Somos uma comunidade de programadores, empreendedores e
-                designers portugueses a viver e a trabalhar fora de Portugal,
-                com hubs em cidades diferentes, começando em Berlim.
+                Somos programadores, empreendedores e designers portugueses a
+                viver e a trabalhar fora de Portugal. Vemos os altos níveis de
+                emigração e o contexto de trabalho remoto como uma oportunidade
+                para abrir portas e criar pontes que ajudem portugueses em todo
+                o lado a crescer.
               </p>
 
               <h2 className="text-2xl mb-3 mt-8 tracking-tight font-semibold">
                 O que fazemos?
               </h2>
-              <p className="mb-3 text-lg text-slate-800 leading-7 [&:not(:first-child)]:mt-6">
+              <p className="mb-3 text-lg text-slate-700 leading-7 [&:not(:first-child)]:mt-6">
                 Existimos para conectar e apoiar Portugueses que trabalham em
-                tecnologia e que empreendem pelo mundo fora. Organizamos
-                jantares, meetups e partilhamos experiências e oportunidades de
-                crescimento pessoal e profissional.
+                tecnologia e que empreendem pelo mundo fora.
+              </p>
+
+              <p className="mb-3 text-lg text-slate-700 leading-7 [&:not(:first-child)]:mt-6">
+                Organizamos jantares, meetups e partilhamos experiências e
+                oportunidades de crescimento pessoal e profissional, com grupos
+                e newsletters locais, aos quais todos os membros podem ter
+                acesso.
               </p>
 
               <h2 className="text-2xl mb-3 mt-8 tracking-tight font-semibold">
-                A visão
+                Visão
               </h2>
-              <p className="mb-3 text-lg text-slate-800 leading-7 [&:not(:first-child)]:mt-6">
-                Tencionamos construir hubs em cidades chave para ajudar
+              <p className="mb-3 text-lg text-slate-700 leading-7 [&:not(:first-child)]:mt-6">
+                Tencionamos abrir hubs em cidades chave, para ajudar
                 empreendedores a entrar em novos mercados e facilitar a
                 transição e integração de profissionais que decidiram
                 estabelecer-se fora de Portugal.
               </p>
 
-              <p className="mt-10 text-lg text-slate-800">
-                Para mais informação, &nbsp;
-                <Drawer>
-                  <DrawerTrigger asChild>
-                    <button className="hover:bg-slate-200 border-b pb-2 transition-all delay-100">
-                      entra em contacto.
-                    </button>
-                  </DrawerTrigger>
-                  <DrawerContent>
-                    <DrawerHeader>
-                      <DrawerTitle>Entra em contacto</DrawerTitle>
-                      <DrawerDescription>
-                        Costumamos responder dentro de 2 dias.
-                      </DrawerDescription>
-                    </DrawerHeader>
-                    <DrawerFooter>
-                      <Button variant="outline" asChild>
-                        <Link href="mailto:malik@outono.org">
-                          {' '}
-                          <Mail className="mr-2 h-4 w-4" />
-                          Email
-                        </Link>
-                      </Button>
+              <Drawer>
+                <DrawerTrigger asChild>
+                  <Button className="w-60">Fala Connosco</Button>
+                </DrawerTrigger>
+                <DrawerContent>
+                  <DrawerHeader>
+                    <DrawerTitle>Entra em contacto</DrawerTitle>
+                    <DrawerDescription>
+                      Costumamos responder dentro de 2 dias.
+                    </DrawerDescription>
+                  </DrawerHeader>
+                  <DrawerFooter>
+                    <Button variant="outline" asChild>
+                      <Link href="mailto:malik@outono.org">
+                        {' '}
+                        <Mail className="mr-2 h-4 w-4" />
+                        Email
+                      </Link>
+                    </Button>
 
-                      <Button variant="outline" asChild>
-                        <Link href="https://t.me/malikpiara/">
-                          {' '}
-                          <Send className="mr-2 h-4 w-4" />
-                          Telegram
-                        </Link>
-                      </Button>
+                    <Button variant="outline" asChild>
+                      <Link href="https://t.me/malikpiara/">
+                        {' '}
+                        <Send className="mr-2 h-4 w-4" />
+                        Telegram
+                      </Link>
+                    </Button>
 
-                      <Button variant="outline" asChild>
-                        <Link href="https://wa.me/+351962119084/">
-                          {' '}
-                          <MessageCircle className="mr-2 h-4 w-4" />
-                          WhatsApp
-                        </Link>
-                      </Button>
+                    <Button variant="outline" asChild>
+                      <Link href="https://wa.me/+351962119084/">
+                        {' '}
+                        <MessageCircle className="mr-2 h-4 w-4" />
+                        WhatsApp
+                      </Link>
+                    </Button>
 
-                      <DrawerClose>
-                        <Button variant="outline">Cancel</Button>
-                      </DrawerClose>
-                    </DrawerFooter>
-                  </DrawerContent>
-                </Drawer>
-              </p>
+                    <DrawerClose>
+                      <Button variant="outline">Cancel</Button>
+                    </DrawerClose>
+                  </DrawerFooter>
+                </DrawerContent>
+              </Drawer>
 
               <h2
                 id="berlin"
@@ -128,13 +128,8 @@ export default function Home() {
                 Pessoas
               </h2>
 
-              <p className="mb-3 text-lg text-slate-800 leading-7 [&:not(:first-child)]:mt-6">
-                Para promover coesão e um espirito de co-criação, o primeiro hub
-                em Berlim tem um limite inicial de 15 membros e funciona por
-                convite.
-              </p>
-              <p className="mb-3 text-lg text-slate-800 leading-7 [&:not(:first-child)]:mt-6">
-                Conhece alguns dos membros do hub de Berlim.
+              <p className="mb-3 text-lg text-slate-700 leading-7">
+                Conhece alguns dos membros do nosso primeiro hub em Berlim.
               </p>
             </div>
 

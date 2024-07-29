@@ -14,28 +14,28 @@ import {
 export default function PeopleSection() {
   return (
     <>
-      <div className="grid gap-8 grid-cols-1 sm:grid-cols-2">
+      <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 mt-4">
         {sortedPeople.map((person) => {
           return (
             <div key={person.name}>
-              <Card className="grayscale rounded-xl hover:grayscale-0 transition-all text-center w-72 h-80">
+              <Card className="rounded-xl transition-all text-center w-72 h-80 group hover:border-slate-400">
                 <CardContent className="pb-0 pt-6">
                   <Image
-                    className="mx-auto mb-4 w-28 h-28 rounded-full"
+                    className="mx-auto mb-4 w-28 h-28 rounded-full grayscale group-hover:grayscale-0"
                     width={100}
                     height={100}
                     src={person.photo}
                     alt={person.name}
                   />
                 </CardContent>
-                <CardHeader className="h-28 mt-0">
+                <CardHeader className="h-28 mt-0 pt-0">
                   <CardTitle className="font-medium">{person.name}</CardTitle>
                   <CardDescription className="text-base text-balance">
                     {person.headline}
                   </CardDescription>
                 </CardHeader>
 
-                <CardFooter className="justify-center align-bottom">
+                <CardFooter className="justify-center opacity-0 group-hover:opacity-100 transition-all">
                   <ul className="flex">
                     {person.links.github && (
                       <li>
