@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Mail, Send, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
+import logo from '@/public/logo.svg';
 
 import {
   Drawer,
@@ -13,14 +14,135 @@ import {
   DrawerTrigger,
 } from '@/components/ui/drawer';
 
+import BlobAnimation from './login/blob';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import PeopleSection from '@/components/peopleSection';
+import Image from 'next/image';
 
 export default function Home() {
   return (
     <>
-      <Motto />
-      <main className="flex min-h-screen flex-col items-center justify-between md:p-24 p-4 md:max-w-4xl max-w-7xl m-auto">
+      <div className="flex min-h-screen">
+        <div className="hidden md:block  w-1/2 fixed top-7 left-0 h-[96vh] bg-[#f1ebe8] bg-opacity-5 p-3">
+          <BlobAnimation />
+          <Motto />
+
+          <div className="absolute top-9 left-7 text-slate-600 text-xl font-medium flex items-center gap-2 ">
+            <Image
+              src={logo}
+              alt="Outono logo"
+              className="w-8 h-8 opacity-85"
+            />
+          </div>
+        </div>
+        <main className="w-full md:w-1/2 md:ml-[50%]">
+          <div className="flex flex-col items-center md:items-baseline animate-in m-4 md:m-8 pt-8">
+            <div className="w-full items-center justify-between  animate-in prose">
+              <h2 className="text-4xl font-bold mb-3 tracking-tight">Outono</h2>
+              <p className="mb-3 text-lg leading-7 text-slate-700 [&:not(:first-child)]:mt-6">
+                Outono simboliza maturação e crescimento. Assim como o Outono
+                nos dá a conhecer a transição para uma nova etapa, acreditamos
+                que o ecossistema tecnológico e empreendedor português está
+                também a atravessar um novo período de inovação e
+                competitividade.
+              </p>
+
+              <p className="mb-3 text-lg leading-7 text-slate-700 [&:not(:first-child)]:mt-6">
+                Somos uma comunidade de programadores, empreendedores e
+                designers portugueses a viver e a trabalhar fora de Portugal,
+                com hubs em cidades diferentes, começando em Berlim.
+              </p>
+
+              <h2 className="text-2xl mb-3 mt-8 tracking-tight font-semibold">
+                O que fazemos?
+              </h2>
+              <p className="mb-3 text-lg text-slate-800 leading-7 [&:not(:first-child)]:mt-6">
+                Existimos para conectar e apoiar Portugueses que trabalham em
+                tecnologia e que empreendem pelo mundo fora. Organizamos
+                jantares, meetups e partilhamos experiências e oportunidades de
+                crescimento pessoal e profissional.
+              </p>
+
+              <h2 className="text-2xl mb-3 mt-8 tracking-tight font-semibold">
+                A visão
+              </h2>
+              <p className="mb-3 text-lg text-slate-800 leading-7 [&:not(:first-child)]:mt-6">
+                Tencionamos construir hubs em cidades chave para ajudar
+                empreendedores a entrar em novos mercados e facilitar a
+                transição e integração de profissionais que decidiram
+                estabelecer-se fora de Portugal.
+              </p>
+
+              <p className="mt-10 text-lg text-slate-800">
+                Para mais informação, &nbsp;
+                <Drawer>
+                  <DrawerTrigger asChild>
+                    <button className="hover:bg-slate-200 border-b pb-2 transition-all delay-100">
+                      entra em contacto.
+                    </button>
+                  </DrawerTrigger>
+                  <DrawerContent>
+                    <DrawerHeader>
+                      <DrawerTitle>Entra em contacto</DrawerTitle>
+                      <DrawerDescription>
+                        Costumamos responder dentro de 2 dias.
+                      </DrawerDescription>
+                    </DrawerHeader>
+                    <DrawerFooter>
+                      <Button variant="outline" asChild>
+                        <Link href="mailto:malik@outono.org">
+                          {' '}
+                          <Mail className="mr-2 h-4 w-4" />
+                          Email
+                        </Link>
+                      </Button>
+
+                      <Button variant="outline" asChild>
+                        <Link href="https://t.me/malikpiara/">
+                          {' '}
+                          <Send className="mr-2 h-4 w-4" />
+                          Telegram
+                        </Link>
+                      </Button>
+
+                      <Button variant="outline" asChild>
+                        <Link href="https://wa.me/+351962119084/">
+                          {' '}
+                          <MessageCircle className="mr-2 h-4 w-4" />
+                          WhatsApp
+                        </Link>
+                      </Button>
+
+                      <DrawerClose>
+                        <Button variant="outline">Cancel</Button>
+                      </DrawerClose>
+                    </DrawerFooter>
+                  </DrawerContent>
+                </Drawer>
+              </p>
+
+              <h2
+                id="berlin"
+                className="text-2xl mb-3 mt-8 tracking-tight font-semibold"
+              >
+                Pessoas
+              </h2>
+
+              <p className="mb-3 text-lg text-slate-800 leading-7 [&:not(:first-child)]:mt-6">
+                Para promover coesão e um espirito de co-criação, o primeiro hub
+                em Berlim tem um limite inicial de 15 membros e funciona por
+                convite.
+              </p>
+              <p className="mb-3 text-lg text-slate-800 leading-7 [&:not(:first-child)]:mt-6">
+                Conhece alguns dos membros do hub de Berlim.
+              </p>
+            </div>
+
+            <PeopleSection />
+          </div>
+        </main>
+      </div>
+      {/* <main className="flex min-h-screen flex-col items-center justify-between md:p-24 p-4 md:max-w-4xl max-w-7xl m-auto">
         <div
           className="absolute inset-x-0 bottom-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-10"
           aria-hidden="true"
@@ -47,14 +169,14 @@ export default function Home() {
         </div>
         <div className="w-full items-center justify-between text-black animate-in">
           <h2 className="text-5xl font-bold mb-3 tracking-tight">Outono</h2>
-          <p className="mb-3 text-lg leading-7 text-gray-800 [&:not(:first-child)]:mt-6">
+          <p className="mb-3 text-lg leading-7 text-slate-800 [&:not(:first-child)]:mt-6">
             Outono simboliza maturação e crescimento. Assim como o Outono nos dá
             a conhecer a transição para uma nova etapa, acreditamos que o
             ecossistema tecnológico e empreendedor português está também a
             atravessar um novo período de inovação e competitividade.
           </p>
 
-          <p className="mb-3 text-lg leading-7 text-gray-800 [&:not(:first-child)]:mt-6">
+          <p className="mb-3 text-lg leading-7 text-slate-800 [&:not(:first-child)]:mt-6">
             A Outono é uma comunidade de programadores, empreendedores e
             designers portugueses a viver e a trabalhar fora de Portugal, com
             hubs em cidades diferentes, começando em Berlim.
@@ -63,14 +185,14 @@ export default function Home() {
           <h2 className="text-2xl mb-3 mt-8 tracking-tight font-semibold">
             O que fazemos?
           </h2>
-          <p className="mb-3 text-lg text-gray-800 leading-7 [&:not(:first-child)]:mt-6">
+          <p className="mb-3 text-lg text-slate-800 leading-7 [&:not(:first-child)]:mt-6">
             Existimos para conectar e apoiar Portugueses que trabalham em
             tecnologia e que empreendem pelo mundo fora. Organizamos jantares,
             meetups e partilhamos experiências e oportunidades de crescimento
             pessoal e profissional.
           </p>
 
-          <p className="mb-3 text-lg text-gray-800 leading-7 [&:not(:first-child)]:mt-6">
+          <p className="mb-3 text-lg text-slate-800 leading-7 [&:not(:first-child)]:mt-6">
             Para promover coesão e um espirito de co-criação, o primeiro hub em
             Berlim tem um limite inicial de 15 membros e funciona por convite ou
             candidatura.
@@ -79,18 +201,18 @@ export default function Home() {
           <h2 className="text-2xl mb-3 mt-8 tracking-tight font-semibold">
             A visão
           </h2>
-          <p className="mb-3 text-lg text-gray-800 leading-7 [&:not(:first-child)]:mt-6">
+          <p className="mb-3 text-lg text-slate-800 leading-7 [&:not(:first-child)]:mt-6">
             Tencionamos construir hubs em cidades chave para ajudar
             empreendedores a entrar em novos mercados e facilitar a transição e
             integração de profissionais que decidiram estabelecer-se fora de
             Portugal.
           </p>
 
-          <p className="mt-10 text-lg text-gray-800">
+          <p className="mt-10 text-lg text-slate-800">
             Para mais informação, &nbsp;
             <Drawer>
               <DrawerTrigger asChild>
-                <button className="hover:bg-gray-200 border-b pb-2 transition-all delay-100">
+                <button className="hover:bg-slate-200 border-b pb-2 transition-all delay-100">
                   entra em contacto.
                 </button>
               </DrawerTrigger>
@@ -140,21 +262,21 @@ export default function Home() {
           >
             Pessoas
           </h2>
-          <p className="mb-3 text-lg text-gray-800 leading-7 [&:not(:first-child)]:mt-6">
+          <p className="mb-3 text-lg text-slate-800 leading-7 [&:not(:first-child)]:mt-6">
             Conhece alguns dos elementos que já integram a nossa comunidade em
             Berlim.
           </p>
         </div>
 
         <PeopleSection />
-      </main>
+      </main> */}
     </>
   );
 }
 
 export function Motto() {
   return (
-    <p className="uppercase text-xs [writing-mode:vertical-lr] rotate-180 fixed bottom-20 tracking-wider mx-3 hover:text-tertiary max-sm:hidden transition-all duration-300 cursor-default text-slate-500">
+    <p className="uppercase text-xs [writing-mode:vertical-lr] rotate-180 fixed bottom-20 tracking-wider mx-3 hover:text-tertiary max-sm:hidden transition-all duration-300 cursor-default text-slate-500 hover:animate-pulse">
       Only you know who you can be
     </p>
   );

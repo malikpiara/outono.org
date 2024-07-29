@@ -22,8 +22,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`!bg-transparent ${inter.className}`}>
-        <Menubar>
+      <body className={` ${inter.className}`}>
+        <Menubar className="z-50 fixed top-0 left-0">
           <MenubarMenu>
             <MenubarTrigger className={'font-semibold'}>Outono</MenubarTrigger>
             <MenubarContent>
