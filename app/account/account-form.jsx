@@ -8,6 +8,7 @@ export default function AccountForm({ user }) {
   const [fullname, setFullname] = useState(null);
   const [username, setUsername] = useState(null);
   const [website, setWebsite] = useState(null);
+  const [currentCity, setCurrentCity] = useState(null);
   const [avatar_url, setAvatarUrl] = useState(null);
 
   const getProfile = useCallback(async () => {
@@ -16,7 +17,7 @@ export default function AccountForm({ user }) {
 
       const { data, error, status } = await supabase
         .from('profiles')
-        .select(`full_name, username, website, avatar_url`)
+        .select(`full_name, username, website, avatar_url, current_city`)
         .eq('id', user?.id)
         .single();
 
@@ -28,6 +29,7 @@ export default function AccountForm({ user }) {
         setFullname(data.full_name);
         setUsername(data.username);
         setWebsite(data.website);
+        setCurrentCity(data.current_city);
         setAvatarUrl(data.avatar_url);
       }
     } catch (error) {
@@ -41,7 +43,7 @@ export default function AccountForm({ user }) {
     getProfile();
   }, [user, getProfile]);
 
-  async function updateProfile({ username, website, avatar_url }) {
+  async function updateProfile({ username, website, avatar_url, currentCity }) {
     try {
       setLoading(true);
 
@@ -51,6 +53,7 @@ export default function AccountForm({ user }) {
         username,
         website,
         avatar_url,
+        currentCity,
         updated_at: new Date().toISOString(),
       });
       if (error) throw error;
@@ -63,7 +66,7 @@ export default function AccountForm({ user }) {
   }
 
   return (
-    <div className="form-widget">
+    <div className="form-widget bg-slate-200 flex flex-col mx-auto p-8 gap-3">
       <div>
         <label htmlFor="email">Email</label>
         <input id="email" type="text" value={user?.email} disabled />
@@ -94,6 +97,10 @@ export default function AccountForm({ user }) {
           value={website || ''}
           onChange={(e) => setWebsite(e.target.value)}
         />
+      </div>
+      <div>
+        <label htmlFor="currentCity">Current City</label>
+        <input id="currentCity" type="text" value={currentCity} disabled />
       </div>
 
       <div>
