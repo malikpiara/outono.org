@@ -28,11 +28,16 @@ export async function POST(request) {
     // Fetch users with their profiles
     const { data: profiles, error: profilesError } = await supabase
       .from('profiles')
-      .select('id, full_name, email');
+      .select('id, full_name, email, current_city');
 
     if (profilesError) throw profilesError;
 
-    const emails = profiles.map((user) => {
+    // Filter profiles to include only those in Berlin
+    const berlinProfiles = profiles.filter(
+      (profile) => profile.current_city === 'Berlin'
+    );
+
+    const emails = berlinProfiles.map((user) => {
       const firstName = user.full_name.split(' ')[0];
       const link = `${process.env.NEXT_PUBLIC_SITE_URL}/login?email=${user.email}`;
 
