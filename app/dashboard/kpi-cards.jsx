@@ -1,7 +1,7 @@
 import { Card, CardContent, CardTitle } from '@/components/ui/card';
 import { MailIcon, Sparkle } from 'lucide-react';
 
-export default function KpiCards() {
+export default function KpiCards({ userCount, postCount, activeUsersCount }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
       <Card className="">
@@ -11,7 +11,7 @@ export default function KpiCards() {
               <CardTitle className="text-sm font-normal">
                 Updates Publicados
               </CardTitle>
-              <div className="text-3xl font-semibold">2</div>
+              <div className="text-3xl font-semibold">{postCount}</div>
               <div className="text-sm text-muted-foreground">
                 +12.5% from last month
               </div>
@@ -41,7 +41,7 @@ export default function KpiCards() {
               <CardTitle className="text-sm font-normal">
                 Community Members
               </CardTitle>
-              <div className="text-3xl font-semibold">12</div>
+              <div className="text-3xl font-semibold">{userCount}</div>
               <div className="text-sm text-muted-foreground">
                 +8.2% from last month
               </div>
@@ -55,7 +55,7 @@ export default function KpiCards() {
           <div className="flex items-center justify-between w-full">
             <div>
               <CardTitle className="text-sm font-normal">Active Now</CardTitle>
-              <div className="text-3xl font-semibold">1</div>
+              <div className="text-3xl font-semibold">{activeUsersCount}</div>
               <div className="text-sm text-muted-foreground">
                 +5.1% from last month
               </div>
