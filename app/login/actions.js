@@ -15,7 +15,7 @@ export async function login(formData) {
     options: {
       // set this to false if you do not want the user to be automatically signed up
       shouldCreateUser: false,
-      emailRedirectTo: 'https://example.com/welcome',
+      emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/confirm`,
     },
   };
 
