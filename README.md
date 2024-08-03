@@ -8,22 +8,22 @@ A Outono é uma comunidade de programadores, designers e empreendedores Portugue
 
 Este projeto é construido com [Next.js](https://nextjs.org/), Supabase, Resend e Github Actions.
 
-## Getting Started
+# Getting Started
 
 ## Prerequisites
 
-- [Node.js](https://nodejs.org/) (version X.X or higher)
-- [pnpm](https://pnpm.io/) (version X.X or higher)
-- [Docker](https://www.docker.com/) (version X.X or higher)
-- [Supabase CLI](https://supabase.com/docs/guides/cli) (version X.X or higher)
+- [Node.js](https://nodejs.org/)
+- [pnpm](https://pnpm.io/)
+- [Docker](https://www.docker.com/)
+- [Supabase CLI](https://supabase.com/docs/guides/cli)
 
 ## Local Development Setup
 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/your-repo-name.git
-   cd your-repo-name
+   git clone https://github.com/malikpiara/outono.org.git
+   cd outono.org
    ```
 
 2. Install dependencies:
@@ -67,6 +67,7 @@ Este projeto é construido com [Next.js](https://nextjs.org/), Supabase, Resend 
 ## Docker and Supabase
 
 Docker is used to run the local Supabase instance, which includes PostgreSQL, GoTrue (for authentication), PostgREST, and other Supabase services.
+
 The `supabase start` command initializes and runs these Docker containers.
 You can view running Supabase containers with `docker ps`.
 To stop and remove Supabase containers, use `supabase stop`.
@@ -99,7 +100,3 @@ supabase stop
 - [Next.js Documentation](https://nextjs.org/docs)
 - [Supabase Documentation](https://supabase.com/docs)
 - [Docker Documentation](https://docs.docker.com/)
-
-```
-
-```
