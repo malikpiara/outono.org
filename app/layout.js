@@ -1,4 +1,4 @@
-import { Inter, Playfair_Display } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import './globals.css';
 import {
   Menubar,
@@ -50,7 +50,20 @@ export default function RootLayout({ children }) {
             <MenubarTrigger>Pessoas</MenubarTrigger>
             <MenubarContent>
               <MenubarItem>
-                <Link href="/#berlin">Berlim</Link>
+                <Link href="/#berlin" className="w-full">
+                  Berlim
+                </Link>
+              </MenubarItem>
+            </MenubarContent>
+          </MenubarMenu>
+
+          <MenubarMenu>
+            <MenubarTrigger>Ver</MenubarTrigger>
+            <MenubarContent>
+              <MenubarItem>
+                <Link href="/dashboard" className="w-full">
+                  Atividade
+                </Link>
               </MenubarItem>
             </MenubarContent>
           </MenubarMenu>
