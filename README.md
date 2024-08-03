@@ -10,19 +10,6 @@ Este projeto é construido com [Next.js](https://nextjs.org/), Supabase, Resend 
 
 ## Getting Started
 
-First, run the development server:
-
-```bash
-pnpm dev
-```
-
-Certainly! Here's the complete README in a format you can directly copy into your README.md file:
-
-````markdown
-# Project Name
-
-Brief description of your project.
-
 ## Prerequisites
 
 - [Node.js](https://nodejs.org/) (version X.X or higher)
@@ -33,11 +20,11 @@ Brief description of your project.
 ## Local Development Setup
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/yourusername/your-repo-name.git
    cd your-repo-name
    ```
-````
 
 2. Install dependencies:
 
