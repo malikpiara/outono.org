@@ -14,11 +14,15 @@ export default async function HomeN({ searchParams }) {
   }
 
   let fullName = null;
-  if (searchParams.email) {
+  const email =
+    searchParams.email ||
+    (process.env.NODE_ENV === 'development' ? 'malik@outono.org' : '');
+
+  if (email) {
     const { data, error } = await supabase
       .from('profiles')
       .select('full_name')
-      .eq('email', searchParams.email)
+      .eq('email', email)
       .single();
 
     if (data) {
@@ -26,10 +30,5 @@ export default async function HomeN({ searchParams }) {
     }
   }
 
-  return (
-    <LoginComponent
-      initialEmail={searchParams.email}
-      initialFullName={fullName}
-    />
-  );
+  return <LoginComponent initialEmail={email} initialFullName={fullName} />;
 }
