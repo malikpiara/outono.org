@@ -4,75 +4,47 @@ import { cookies } from 'next/headers';
 export function createClient() {
   const cookieStore = cookies();
 
-  // Create a server's supabase client with newly configured cookie,
-  // which could be used to maintain user's session
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL,
     process.env.SUPABASE_SERVICE_ROLE_KEY,
     {
       cookies: {
-        getAll() {
-          return cookieStore.getAll();
+        get(name) {
+          return cookieStore.get(name)?.value;
         },
-        setAll(cookiesToSet) {
-          try {
-            cookiesToSet.forEach(({ name, value, options }) =>
-              cookieStore.set(name, value, options)
-            );
-          } catch {
-            // The `setAll` method was called from a Server Component.
-            // This can be ignored if you have middleware refreshing
-            // user sessions.
-          }
+        set(name, value, options) {
+          cookieStore.set({ name, value, ...options });
+        },
+        remove(name, options) {
+          cookieStore.set({ name, value: '', ...options });
         },
       },
     }
   );
 
   if (process.env.NODE_ENV === 'development') {
+    const mockUserId = 'b1371eca-f218-471b-9214-d3df8ff419ab';
     const mockUserEmail = 'malik@outono.org';
 
     // Mock authentication
     supabase.auth.getSession = async () => ({
-      data: {
-        session: {
-          user: {
-            id: 'b1371eca-f218-471b-9214-d3df8ff419ab',
-            email: mockUserEmail,
-          },
-        },
-      },
+      data: { session: { user: { id: mockUserId, email: mockUserEmail } } },
       error: null,
     });
 
     supabase.auth.getUser = async () => ({
-      data: {
-        user: {
-          id: 'b1371eca-f218-471b-9214-d3df8ff419ab',
-          email: mockUserEmail,
-        },
-      },
+      data: { user: { id: mockUserId, email: mockUserEmail } },
       error: null,
     });
 
-    // Wrap data fetching methods to use the mock user email
-    const originalFrom = supabase.from.bind(supabase);
-    supabase.from = (table) => {
-      const query = originalFrom(table);
-      const originalSelect = query.select.bind(query);
-      query.select = (...args) => {
-        const selectQuery = originalSelect(...args);
-        const originalEq = selectQuery.eq.bind(selectQuery);
-        selectQuery.eq = (column, value) => {
-          if (column === 'email' && value === undefined) {
-            return originalEq(column, mockUserEmail);
-          }
-          return originalEq(column, value);
-        };
-        return selectQuery;
-      };
-      return query;
+    // Set Authorization header for all requests in development
+    const originalRequest = supabase.rest.request;
+    supabase.rest.request = async (method, path, options) => {
+      const headers = options?.headers || {};
+      headers['Authorization'] = `Bearer ${mockUserId}`;
+      return originalRequest(method, path, { ...options, headers });
     };
   }
+
   return supabase;
 }

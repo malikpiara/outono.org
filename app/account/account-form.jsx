@@ -1,8 +1,11 @@
 'use client';
 import { useCallback, useEffect, useState } from 'react';
 import { createClient } from '@/utils/supabase/client';
+import Avatar from './avatar';
 
 export default function AccountForm({ user }) {
+  console.log('User object:', user);
+
   const supabase = createClient();
   const [loading, setLoading] = useState(true);
   const [fullname, setFullname] = useState(null);
@@ -44,6 +47,14 @@ export default function AccountForm({ user }) {
   }, [user, getProfile]);
 
   async function updateProfile({ username, website, avatar_url, currentCity }) {
+    console.log('Updating profile with:', {
+      id: user?.id,
+      fullname,
+      username,
+      website,
+      avatar_url,
+      currentCity,
+    });
     try {
       setLoading(true);
 
@@ -59,6 +70,7 @@ export default function AccountForm({ user }) {
       if (error) throw error;
       alert('Profile updated!');
     } catch (error) {
+      console.error('Error details:', error);
       alert('Error updating the data!');
     } finally {
       setLoading(false);
@@ -67,6 +79,15 @@ export default function AccountForm({ user }) {
 
   return (
     <div className="form-widget bg-slate-200 flex flex-col mx-auto p-8 gap-3">
+      <Avatar
+        uid={user?.id}
+        url={avatar_url}
+        size={150}
+        onUpload={(url) => {
+          setAvatarUrl(url);
+          updateProfile({ fullname, username, website, avatar_url: url });
+        }}
+      />
       <div>
         <label htmlFor="email">Email</label>
         <input id="email" type="text" value={user?.email} disabled />
