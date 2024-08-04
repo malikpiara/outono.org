@@ -1,11 +1,11 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { Mail, Send, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
 import { createClient } from '@/utils/supabase/client';
 import { useState, useCallback, useEffect } from 'react';
 import { toast, Toaster } from 'sonner';
+import { SupabaseAvatar } from './supabaseAvatar';
 
 import {
   Card,
@@ -45,6 +45,7 @@ export default function Home({ user }) {
   const [loading, setLoading] = useState(true);
   const [fullname, setFullname] = useState(null);
   const [firstname, setFirstname] = useState(null);
+  const [profilePic, setProfilePic] = useState(null);
   const [posts, setPosts] = useState([]);
 
   // I think I should create a separate file with my main functions
@@ -56,7 +57,7 @@ export default function Home({ user }) {
 
       const { data, error, status } = await supabase
         .from('profiles')
-        .select(`full_name`)
+        .select(`full_name, avatar_url`)
         .eq('id', user?.id)
         .single();
 
@@ -67,6 +68,7 @@ export default function Home({ user }) {
       if (data) {
         setFullname(data.full_name);
         setFirstname(data.full_name.split(' ')[0]);
+        setProfilePic(data.avatar_url);
       }
     } catch (error) {
       alert('Error loading user data!');
@@ -81,7 +83,7 @@ export default function Home({ user }) {
 
       const { data, error, status } = await supabase.from('posts').select(`
             *,
-            profiles ( full_name, id, email )
+            profiles ( full_name, id, email, avatar_url )
         `);
 
       if (error && status !== 406) {
@@ -149,6 +151,7 @@ export default function Home({ user }) {
                   option={post.option}
                   shortMessage={post.short_message}
                   longMessage={post.long_message}
+                  profilePic={post.profiles.avatar_url}
                 />
               ))}
 
@@ -158,6 +161,7 @@ export default function Home({ user }) {
               email={user?.email}
               supabase={supabase}
               user={user}
+              profilePic={profilePic}
             />
           </div>
         </div>
@@ -173,6 +177,7 @@ export function CardWithForm({
   shortMessage,
   longMessage,
   authorEmail,
+  profilePic,
 }) {
   const [formMessage, setFormMessage] = useState('');
 
@@ -224,10 +229,10 @@ export function CardWithForm({
     <Card className="md:w-[650px] w-full">
       <CardHeader>
         <div className="flex space-x-4">
-          <Avatar>
-            <AvatarImage src="#" />
-            <AvatarFallback>{author ? author[0] : 'U'}</AvatarFallback>
-          </Avatar>
+          <SupabaseAvatar
+            path={profilePic}
+            fallback={author ? author[0] : 'U'}
+          />
           <div className="space-y-1">
             <div className="flex text-center items-center gap-1">
               <h4 className=" font-semibold">{author}</h4>
@@ -277,6 +282,7 @@ export function CardWithFormToShare({
   email,
   supabase,
   user,
+  profilePic,
 }) {
   const [option, setOption] = useState('');
   const [shortMessage, setShortMessage] = useState('');
@@ -317,10 +323,7 @@ export function CardWithFormToShare({
     <Card className="md:w-[650px] w-full">
       <CardHeader>
         <div className="flex space-x-4">
-          <Avatar>
-            <AvatarImage src="#" />
-            <AvatarFallback>{name ? name[0] : `U`}</AvatarFallback>
-          </Avatar>
+          <SupabaseAvatar path={profilePic} fallback={name ? name[0] : 'U'} />
           <div className="space-y-1 w-full self-end">
             <div className="flex text-center items-center gap-2">
               <Select value={option} onValueChange={setOption}>
