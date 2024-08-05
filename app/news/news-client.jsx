@@ -81,10 +81,19 @@ export default function Home({ user }) {
     try {
       setLoading(true);
 
-      const { data, error, status } = await supabase.from('posts').select(`
+      // Calculate the date from two weeks ago
+      const twoWeeksAgo = new Date();
+      twoWeeksAgo.setDate(twoWeeksAgo.getDate() - 14);
+
+      const { data, error, status } = await supabase
+        .from('posts')
+        .select(
+          `
             *,
             profiles ( full_name, id, email, avatar_url )
-        `);
+        `
+        )
+        .gte('created_at', twoWeeksAgo.toISOString()); // Filter posts created in the last 2 weeks
 
       if (error && status !== 406) {
         throw error;

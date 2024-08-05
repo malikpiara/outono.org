@@ -18,10 +18,15 @@ export async function POST(request) {
   }
 
   try {
+    // Calculate the date from two weeks ago
+    const twoWeeksAgo = new Date();
+    twoWeeksAgo.setDate(twoWeeksAgo.getDate() - 14);
+
     // Fetch posts
     const { data: posts, error: postError } = await supabase
       .from('posts')
-      .select(`*, profiles ( full_name, id, email )`);
+      .select(`*, profiles ( full_name, id, email )`)
+      .gte('created_at', twoWeeksAgo.toISOString());
 
     if (postError) throw postError;
 
