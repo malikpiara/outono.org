@@ -1,7 +1,14 @@
 import { Card, CardContent, CardTitle } from '@/components/ui/card';
 import { MailIcon, Sparkle } from 'lucide-react';
 
-export default function KpiCards({ userCount, postCount, activeUsersCount }) {
+export default function KpiCards({
+  userCount,
+  postCount,
+  postsTrendPercentage,
+  activeUsersCount,
+  usersTrend,
+  activeUsersTrend,
+}) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
       <Card className="">
@@ -12,9 +19,17 @@ export default function KpiCards({ userCount, postCount, activeUsersCount }) {
                 Updates Publicados
               </CardTitle>
               <div className="text-3xl font-semibold">{postCount}</div>
-              <div className="text-sm text-muted-foreground">
-                +12.5% from last month
-              </div>
+              {postsTrendPercentage !== 0 && (
+                <div className="text-sm text-muted-foreground">
+                  {postsTrendPercentage > 0 ? '+' : ''}
+                  {postsTrendPercentage.toFixed(1)}% from last month
+                </div>
+              )}
+              {postsTrendPercentage === 0 && (
+                <div className="text-sm text-muted-foreground">
+                  No change from last month
+                </div>
+              )}
             </div>
             <MailIcon className="w-4 h-4 text-muted-foreground" />
           </div>
@@ -27,7 +42,7 @@ export default function KpiCards({ userCount, postCount, activeUsersCount }) {
               <CardTitle className="text-sm font-normal">Respostas</CardTitle>
               <div className="text-3xl font-semibold">0</div>
               <div className="text-sm text-muted-foreground">
-                +0% from last month
+                +0 from last month
               </div>
             </div>
             <Sparkle className="w-4 h-4 text-muted-foreground" />
@@ -42,9 +57,16 @@ export default function KpiCards({ userCount, postCount, activeUsersCount }) {
                 Community Members
               </CardTitle>
               <div className="text-3xl font-semibold">{userCount}</div>
-              <div className="text-sm text-muted-foreground">
-                +8.2% from last month
-              </div>
+              {usersTrend !== undefined ? (
+                <div className="text-sm text-muted-foreground">
+                  {usersTrend > 0 ? '+' : ''}
+                  {usersTrend} from last month
+                </div>
+              ) : (
+                <div className="text-sm text-muted-foreground">
+                  No data available for trend
+                </div>
+              )}
             </div>
             <UsersIcon className="w-4 h-4 text-muted-foreground" />
           </div>
@@ -56,9 +78,16 @@ export default function KpiCards({ userCount, postCount, activeUsersCount }) {
             <div>
               <CardTitle className="text-sm font-normal">Active Now</CardTitle>
               <div className="text-3xl font-semibold">{activeUsersCount}</div>
-              <div className="text-sm text-muted-foreground">
-                +5.1% from last month
-              </div>
+              {activeUsersTrend !== undefined ? (
+                <div className="text-sm text-muted-foreground">
+                  {activeUsersTrend > 0 ? '+' : ''}
+                  {activeUsersTrend} from last month
+                </div>
+              ) : (
+                <div className="text-sm text-muted-foreground">
+                  No data available for trend
+                </div>
+              )}
             </div>
             <ActivityIcon className="w-4 h-4 text-muted-foreground" />
           </div>
