@@ -119,8 +119,8 @@ export default function Home({ user }) {
 
   return (
     <>
-      <main className="flex min-h-screen flex-col items-center justify-between md:p-20 p-4 md:max-w-4xl max-w-7xl m-auto">
-        <div className="w-full items-center justify-between text-black animate-in">
+      <main className="flex flex-col w-screen min-h-screen items-center justify-center sm:p-12 p-4 animate-in">
+        <div>
           {firstname && (
             <h2 className="text-3xl font-bold mb-3 tracking-tight">
               👋 Olá {firstname}, estes são os updates da semana
@@ -134,7 +134,7 @@ export default function Home({ user }) {
           <div className="space-y-4">
             {posts &&
               posts.map((post, i) => (
-                <div key={i} className="flex space-x-1">
+                <div key={i} className="flex gap-2">
                   <span>{i + 1}.</span>
                   <SummaryItem
                     key={post.id}
@@ -273,7 +273,7 @@ export function CardWithForm({
       </CardContent>
       <CardFooter className="flex justify-between">
         <div />
-        <Button>
+        <Button className={'w-full sm:w-fit'}>
           <Link
             href={`mailto:${authorEmail}?subject=Outono&body=Este email é para ${author.split(' ')[0]} e mais ninguém consegue ler o que escreveres aqui :) %0D%0A%0D%0A%0D%0A ${formMessage}`}
           >
@@ -334,9 +334,9 @@ export function CardWithFormToShare({
         <div className="flex space-x-4">
           <SupabaseAvatar path={profilePic} fallback={name ? name[0] : 'U'} />
           <div className="space-y-1 w-full self-end">
-            <div className="flex text-center items-center gap-2">
+            <div className="flex text-center sm:items-center gap-2 flex-col sm:flex-row items-start">
               <Select value={option} onValueChange={setOption}>
-                <SelectTrigger className="w-[180px]">
+                <SelectTrigger className="w-full sm:w-[180px]">
                   <SelectValue placeholder="Seleciona" />
                 </SelectTrigger>
                 <SelectContent>
@@ -374,6 +374,7 @@ export function CardWithFormToShare({
       <CardFooter className="flex justify-between">
         <div />
         <Button
+          className={'w-full sm:w-fit'}
           onClick={() => {
             handleSharePost();
             toast(
