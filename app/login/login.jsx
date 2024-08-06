@@ -26,7 +26,7 @@ export default function LoginComponent({ initialEmail, initialFullName }) {
 
   return (
     <>
-      <div className="w-full md:grid md:grid-cols-2 mt-10 h-full">
+      <div className="w-full md:grid md:grid-cols-2  h-full">
         <div className="hidden md:block bg-[#f1ebe8] bg-opacity-5 mx-3 rounded-lg h-[93vh]">
           <BlobAnimation />
           <Motto />
