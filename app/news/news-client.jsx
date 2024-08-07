@@ -6,6 +6,7 @@ import { createClient } from '@/utils/supabase/client';
 import { useState, useCallback, useEffect } from 'react';
 import { toast, Toaster } from 'sonner';
 import { SupabaseAvatar } from './supabaseAvatar';
+import { SkeletonSummary, SkeletonPost, SkeletonTitle } from './skeleton';
 
 import {
   Card,
@@ -116,6 +117,19 @@ export default function Home({ user }) {
   const addPost = (newPost) => {
     setPosts([...posts, newPost]);
   };
+
+  if (loading) {
+    return (
+      <div className=" flex flex-col w-screen min-h-screen items-center justify-center sm:p-12 p-4">
+        <div className="space-y-8 flex flex-col md:w-[650px] w-full">
+          <SkeletonTitle />
+          <SkeletonSummary />
+          <SkeletonPost />
+          <SkeletonPost />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
