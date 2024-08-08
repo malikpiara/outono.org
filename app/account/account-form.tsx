@@ -119,21 +119,13 @@ export default function AccountForm({ user }: { user: User | null }) {
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-8 md:w-[650px] w-full p-4"
         >
-          <FormField
-            control={form.control}
-            name="avatar_url"
-            render={({ field }) => (
-              <FormControl>
-                <Avatar
-                  uid={user?.id}
-                  url={field.value}
-                  size={150}
-                  onUpload={(filePath: any) => {
-                    field.onChange(filePath);
-                  }}
-                />
-              </FormControl>
-            )}
+          <Avatar
+            uid={user?.id}
+            url={form.watch('avatar_url')}
+            size={150}
+            onUpload={(filePath) => {
+              form.setValue('avatar_url', filePath);
+            }}
           />
 
           <FormField
