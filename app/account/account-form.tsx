@@ -1,18 +1,21 @@
 'use client';
 import { useCallback, useEffect, useState } from 'react';
-import { createClient } from '@/utils/supabase/client';
+import { createClient } from '../../utils/supabase/client';
+import { type User } from '@supabase/supabase-js';
 import Avatar from './avatar';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import React from 'react';
 
-export default function AccountForm({ user }) {
-  console.log('User object:', user);
-
+export default function AccountForm({ user }: { user: User | null }) {
   const supabase = createClient();
   const [loading, setLoading] = useState(true);
-  const [fullname, setFullname] = useState(null);
-  const [username, setUsername] = useState(null);
-  const [website, setWebsite] = useState(null);
-  const [currentCity, setCurrentCity] = useState(null);
-  const [avatar_url, setAvatarUrl] = useState(null);
+  const [fullname, setFullname] = useState<string | null>(null);
+  const [username, setUsername] = useState<string | null>(null);
+  const [website, setWebsite] = useState<string | null>(null);
+  const [currentCity, setCurrentCity] = useState<string | null>(null);
+  const [avatar_url, setAvatarUrl] = useState<string | null>(null);
 
   const getProfile = useCallback(async () => {
     try {
@@ -37,6 +40,7 @@ export default function AccountForm({ user }) {
       }
     } catch (error) {
       alert('Error loading user data!');
+      console.log(error);
     } finally {
       setLoading(false);
     }
@@ -46,7 +50,19 @@ export default function AccountForm({ user }) {
     getProfile();
   }, [user, getProfile]);
 
-  async function updateProfile({ username, website, avatar_url, currentCity }) {
+  async function updateProfile({
+    fullname,
+    username,
+    website,
+    avatar_url,
+    currentCity,
+  }: {
+    fullname: string | null;
+    username: string | null;
+    website: string | null;
+    avatar_url: string | null;
+    currentCity: string | null;
+  }) {
     console.log('Updating profile with:', {
       id: user?.id,
       fullname,
@@ -59,12 +75,12 @@ export default function AccountForm({ user }) {
       setLoading(true);
 
       const { error } = await supabase.from('profiles').upsert({
-        id: user?.id,
+        id: user?.id as string,
         full_name: fullname,
         username,
         website,
         avatar_url,
-        currentCity,
+        current_city: currentCity,
         updated_at: new Date().toISOString(),
       });
       if (error) throw error;
@@ -85,12 +101,18 @@ export default function AccountForm({ user }) {
         size={150}
         onUpload={(url) => {
           setAvatarUrl(url);
-          updateProfile({ fullname, username, website, avatar_url: url });
+          updateProfile({
+            fullname,
+            username,
+            website,
+            avatar_url: url,
+            currentCity,
+          });
         }}
       />
       <div>
         <label htmlFor="email">Email</label>
-        <input id="email" type="text" value={user?.email} disabled />
+        <input id="email" type="text" value={user?.email || ''} disabled />
       </div>
       <div>
         <label htmlFor="fullName">Full Name</label>
@@ -121,14 +143,25 @@ export default function AccountForm({ user }) {
       </div>
       <div>
         <label htmlFor="currentCity">Current City</label>
-        <input id="currentCity" type="text" value={currentCity} disabled />
+        <input
+          id="currentCity"
+          type="text"
+          value={currentCity || ''}
+          disabled
+        />
       </div>
 
       <div>
         <button
           className="button primary block"
           onClick={() =>
-            updateProfile({ fullname, username, website, avatar_url })
+            updateProfile({
+              fullname,
+              username,
+              website,
+              avatar_url,
+              currentCity,
+            })
           }
           disabled={loading}
         >
