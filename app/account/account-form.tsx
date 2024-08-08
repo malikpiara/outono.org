@@ -7,7 +7,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import React from 'react';
-import { Button } from '../../components/ui/button';
 import {
   Form,
   FormControl,
@@ -16,8 +15,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '../../components/ui/form';
-import { Input } from '../../components/ui/input';
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 
 const formSchema = z.object({
   fullname: z.string().min(5, {
@@ -134,7 +134,7 @@ export default function AccountForm({ user }: { user: User | null }) {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Full Name</FormLabel>
-                <FormControl asChild>
+                <FormControl>
                   <Input placeholder="Full Name" {...field} />
                 </FormControl>
                 <FormDescription>
