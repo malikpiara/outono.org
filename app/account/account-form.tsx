@@ -99,7 +99,7 @@ export default function AccountForm({ user }: { user: User | null }) {
         uid={user?.id}
         url={avatar_url}
         size={150}
-        onUpload={(url) => {
+        onUpload={(url: string | null) => {
           setAvatarUrl(url);
           updateProfile({
             fullname,
