@@ -123,18 +123,16 @@ export default function AccountForm({ user }: { user: User | null }) {
             control={form.control}
             name="avatar_url"
             render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Avatar
-                    uid={user?.id}
-                    url={field.value}
-                    size={150}
-                    onUpload={(filePath) => {
-                      field.onChange(filePath);
-                    }}
-                  />
-                </FormControl>
-              </FormItem>
+              <FormControl>
+                <Avatar
+                  uid={user?.id}
+                  url={field.value}
+                  size={150}
+                  onUpload={(filePath: any) => {
+                    field.onChange(filePath);
+                  }}
+                />
+              </FormControl>
             )}
           />
 
