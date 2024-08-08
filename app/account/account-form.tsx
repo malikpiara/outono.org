@@ -134,7 +134,7 @@ export default function AccountForm({ user }: { user: User | null }) {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Full Name</FormLabel>
-                <FormControl>
+                <FormControl asChild>
                   <Input placeholder="Full Name" {...field} />
                 </FormControl>
                 <FormDescription>
