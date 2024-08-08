@@ -1,5 +1,5 @@
 'use client';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import { createClient } from '../../utils/supabase/client';
 import { type User } from '@supabase/supabase-js';
 import Avatar from './avatar';
@@ -7,15 +7,44 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import React from 'react';
+import { Button } from '@/components/ui/button';
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+
+const formSchema = z.object({
+  fullname: z.string().min(5, {
+    message: 'Name must be at least 5 characters.',
+  }),
+  username: z.string().min(2, {
+    message: 'Username must be at least 2 characters.',
+  }),
+  website: z.string().url().optional().or(z.literal('')),
+  currentCity: z.string().optional(),
+  avatar_url: z.string().nullable(),
+});
 
 export default function AccountForm({ user }: { user: User | null }) {
   const supabase = createClient();
-  const [loading, setLoading] = useState(true);
-  const [fullname, setFullname] = useState<string | null>(null);
-  const [username, setUsername] = useState<string | null>(null);
-  const [website, setWebsite] = useState<string | null>(null);
-  const [currentCity, setCurrentCity] = useState<string | null>(null);
-  const [avatar_url, setAvatarUrl] = useState<string | null>(null);
+  const [loading, setLoading] = React.useState(true);
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      fullname: '',
+      username: '',
+      website: '',
+      currentCity: '',
+      avatar_url: null,
+    },
+  });
 
   const getProfile = useCallback(async () => {
     try {
@@ -32,11 +61,13 @@ export default function AccountForm({ user }: { user: User | null }) {
       }
 
       if (data) {
-        setFullname(data.full_name);
-        setUsername(data.username);
-        setWebsite(data.website);
-        setCurrentCity(data.current_city);
-        setAvatarUrl(data.avatar_url);
+        form.reset({
+          fullname: data.full_name || '',
+          username: data.username || '',
+          website: data.website || '',
+          currentCity: data.current_city || '',
+          avatar_url: data.avatar_url,
+        });
       }
     } catch (error) {
       alert('Error loading user data!');
@@ -44,43 +75,31 @@ export default function AccountForm({ user }: { user: User | null }) {
     } finally {
       setLoading(false);
     }
-  }, [user, supabase]);
+  }, [user, supabase, form]);
 
   useEffect(() => {
     getProfile();
-  }, [user, getProfile]);
+  }, [getProfile]);
 
-  async function updateProfile({
-    fullname,
-    username,
-    website,
-    avatar_url,
-    currentCity,
-  }: {
-    fullname: string | null;
-    username: string | null;
-    website: string | null;
-    avatar_url: string | null;
-    currentCity: string | null;
-  }) {
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    updateProfile(values);
+  }
+
+  async function updateProfile(values: z.infer<typeof formSchema>) {
     console.log('Updating profile with:', {
       id: user?.id,
-      fullname,
-      username,
-      website,
-      avatar_url,
-      currentCity,
+      ...values,
     });
     try {
       setLoading(true);
 
       const { error } = await supabase.from('profiles').upsert({
         id: user?.id as string,
-        full_name: fullname,
-        username,
-        website,
-        avatar_url,
-        current_city: currentCity,
+        full_name: values.fullname,
+        username: values.username,
+        website: values.website,
+        avatar_url: values.avatar_url,
+        current_city: values.currentCity,
         updated_at: new Date().toISOString(),
       });
       if (error) throw error;
@@ -94,88 +113,89 @@ export default function AccountForm({ user }: { user: User | null }) {
   }
 
   return (
-    <div className="form-widget bg-slate-200 flex flex-col mx-auto p-8 gap-3">
-      <Avatar
-        uid={user?.id}
-        url={avatar_url}
-        size={150}
-        onUpload={(url: string | null) => {
-          setAvatarUrl(url);
-          updateProfile({
-            fullname,
-            username,
-            website,
-            avatar_url: url,
-            currentCity,
-          });
-        }}
-      />
-      <div>
-        <label htmlFor="email">Email</label>
-        <input id="email" type="text" value={user?.email || ''} disabled />
-      </div>
-      <div>
-        <label htmlFor="fullName">Full Name</label>
-        <input
-          id="fullName"
-          type="text"
-          value={fullname || ''}
-          onChange={(e) => setFullname(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="username">Username</label>
-        <input
-          id="username"
-          type="text"
-          value={username || ''}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="website">Website</label>
-        <input
-          id="website"
-          type="url"
-          value={website || ''}
-          onChange={(e) => setWebsite(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="currentCity">Current City</label>
-        <input
-          id="currentCity"
-          type="text"
-          value={currentCity || ''}
-          disabled
-        />
-      </div>
-
-      <div>
-        <button
-          className="button primary block"
-          onClick={() =>
-            updateProfile({
-              fullname,
-              username,
-              website,
-              avatar_url,
-              currentCity,
-            })
-          }
-          disabled={loading}
+    <div className="flex flex-col mx-auto gap-3 o w-screen min-h-screen items-center justify-center sm:p-12 p-4">
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-8 md:w-[650px] w-full p-4"
         >
-          {loading ? 'Loading ...' : 'Update'}
-        </button>
-      </div>
+          <FormField
+            control={form.control}
+            name="avatar_url"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Avatar
+                    uid={user?.id}
+                    url={field.value}
+                    size={150}
+                    onUpload={(filePath) => {
+                      field.onChange(filePath);
+                    }}
+                  />
+                </FormControl>
+              </FormItem>
+            )}
+          />
 
-      <div>
-        <form action="/auth/signout" method="post">
-          <button className="button block" type="submit">
-            Sign out
-          </button>
+          <FormField
+            control={form.control}
+            name="fullname"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Full Name</FormLabel>
+                <FormControl>
+                  <Input placeholder="Full Name" {...field} />
+                </FormControl>
+                <FormDescription>
+                  This is your public display name.
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="username"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Username</FormLabel>
+                <FormControl>
+                  <Input placeholder="Username" {...field} />
+                </FormControl>
+                <FormDescription>This is your public username.</FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="currentCity"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Current City</FormLabel>
+                <FormControl>
+                  <Input disabled placeholder="Current City" {...field} />
+                </FormControl>
+                <FormDescription>
+                  A cidade em que estás afeta o que tu vês na plataforma.
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <Button type="submit" variant="outline">
+            Update Profile
+          </Button>
         </form>
-      </div>
+      </Form>
+
+      <form action="/auth/signout" method="post">
+        <Button variant="secondary" type="submit">
+          Sign out
+        </Button>
+      </form>
     </div>
   );
 }
