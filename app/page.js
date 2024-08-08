@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button';
 import { Mail, Send, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
 import logo from '@/public/logo.svg';
+import Motto from '../components/motto';
 
 import {
   Drawer,
@@ -266,13 +267,5 @@ export default function Home() {
         <PeopleSection />
       </main> */}
     </>
-  );
-}
-
-export function Motto() {
-  return (
-    <p className="uppercase text-xs [writing-mode:vertical-lr] rotate-180 fixed bottom-20 tracking-wider mx-3 hover:text-tertiary max-sm:hidden transition-all duration-300 cursor-default text-slate-500 hover:animate-pulse">
-      Only you know who you can be
-    </p>
   );
 }

@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import Image from 'next/image';
+import { Button } from '@/components/ui/button';
 
 export default function Avatar({ uid, url, size, onUpload }) {
   const supabase = createClient();
@@ -56,6 +57,11 @@ export default function Avatar({ uid, url, size, onUpload }) {
     }
   };
 
+  const handleUploadClick = (e) => {
+    e.preventDefault(); // Prevent form submission
+    document.getElementById('single').click();
+  };
+
   return (
     <div>
       {avatarUrl ? (
@@ -69,14 +75,19 @@ export default function Avatar({ uid, url, size, onUpload }) {
         />
       ) : (
         <div
-          className="avatar no-image"
+          className="avatar no-image bg-slate-200 rounded-sm"
           style={{ height: size, width: size }}
         />
       )}
       <div style={{ width: size }}>
-        <label className="button primary block" htmlFor="single">
-          {uploading ? 'Uploading ...' : 'Upload'}
-        </label>
+        <Button
+          type="button" // Explicitly set type to "button"
+          variant="ghost"
+          onClick={handleUploadClick}
+          disabled={uploading}
+        >
+          {uploading ? 'Uploading ...' : 'Upload Photo'}
+        </Button>
         <input
           style={{
             visibility: 'hidden',
