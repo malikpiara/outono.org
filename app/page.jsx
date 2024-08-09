@@ -24,22 +24,22 @@ export default function Home() {
   return (
     <>
       <div className='flex min-h-screen'>
-        <div className='hidden md:block  w-1/2 fixed top-7 left-0 h-[96vh] bg-[#f1ebe8] bg-opacity-5 p-3'>
+        <div className='fixed left-0 top-7 hidden h-[96vh] w-1/2 bg-[#f1ebe8] bg-opacity-5 p-3 md:block'>
           <BlobAnimation />
           <Motto />
 
-          <div className='absolute top-9 left-7 text-slate-600 text-xl font-medium flex items-center gap-2 '>
+          <div className='absolute left-7 top-9 flex items-center gap-2 text-xl font-medium text-slate-600'>
             <Image
               src={logo}
               alt='Outono logo'
-              className='w-8 h-8 opacity-85'
+              className='h-8 w-8 opacity-85'
             />
           </div>
         </div>
-        <main className='w-full md:w-1/2 md:ml-[50%]'>
-          <div className='flex flex-col items-center md:items-baseline animate-in m-4 md:m-8 pt-6 md:pt-4'>
-            <div className='w-full items-center justify-between  animate-in prose'>
-              <h2 className='text-4xl font-bold mb-3 tracking-tight'>Outono</h2>
+        <main className='w-full md:ml-[50%] md:w-1/2'>
+          <div className='m-4 flex flex-col items-center pt-6 animate-in md:m-8 md:items-baseline md:pt-4'>
+            <div className='prose w-full items-center justify-between animate-in'>
+              <h2 className='mb-3 text-4xl font-bold tracking-tight'>Outono</h2>
               <p className='mb-3 text-lg leading-7 text-slate-700 [&:not(:first-child)]:mt-6'>
                 O Outono simboliza transição e amadurecimento. Tal como a
                 estação, também nós estamos a atravessar um periodo de mudança,
@@ -54,25 +54,25 @@ export default function Home() {
                 o lado a crescer.
               </p>
 
-              <h2 className='text-2xl mb-3 mt-8 tracking-tight font-semibold'>
+              <h2 className='mb-3 mt-8 text-2xl font-semibold tracking-tight'>
                 O que fazemos?
               </h2>
-              <p className='mb-3 text-lg text-slate-700 leading-7 [&:not(:first-child)]:mt-6'>
+              <p className='mb-3 text-lg leading-7 text-slate-700 [&:not(:first-child)]:mt-6'>
                 Existimos para conectar e apoiar Portugueses que trabalham em
                 tecnologia e que empreendem pelo mundo fora.
               </p>
 
-              <p className='mb-3 text-lg text-slate-700 leading-7 [&:not(:first-child)]:mt-6'>
+              <p className='mb-3 text-lg leading-7 text-slate-700 [&:not(:first-child)]:mt-6'>
                 Organizamos jantares, meetups e partilhamos experiências e
                 oportunidades de crescimento pessoal e profissional, com grupos
                 e newsletters locais, aos quais todos os membros podem ter
                 acesso.
               </p>
 
-              <h2 className='text-2xl mb-3 mt-8 tracking-tight font-semibold'>
+              <h2 className='mb-3 mt-8 text-2xl font-semibold tracking-tight'>
                 Visão
               </h2>
-              <p className='mb-3 text-lg text-slate-700 leading-7 [&:not(:first-child)]:mt-6'>
+              <p className='mb-3 text-lg leading-7 text-slate-700 [&:not(:first-child)]:mt-6'>
                 Tencionamos abrir hubs em cidades chave, para ajudar
                 empreendedores a entrar em novos mercados e facilitar a
                 transição e integração de profissionais que decidiram
@@ -124,12 +124,12 @@ export default function Home() {
 
               <h2
                 id='berlin'
-                className='text-2xl mb-3 mt-8 tracking-tight font-semibold'
+                className='mb-3 mt-8 text-2xl font-semibold tracking-tight'
               >
                 Pessoas
               </h2>
 
-              <p className='mb-3 text-lg text-slate-700 leading-7'>
+              <p className='mb-3 text-lg leading-7 text-slate-700'>
                 Conhece alguns dos membros do nosso primeiro hub em Berlim.
               </p>
             </div>

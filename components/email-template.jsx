@@ -29,10 +29,10 @@ export const EmailTemplate = ({ firstName, posts, link }) => (
       <Tailwind>
         <Container className='max-w-[600px]'>
           <Section className='mb-0'>
-            <h1 className='text-2xl font-bold mb-3 tracking-tight'>
+            <h1 className='mb-3 text-2xl font-bold tracking-tight'>
               👋 Olá {firstName}, estes são os updates da semana
             </h1>
-            <Text className='text-slate-600 leading-[24px]'>
+            <Text className='leading-[24px] text-slate-600'>
               Esta newsletter com procuras, ofertas e partilhas é enviada todas
               as segundas-feiras a membros da Outono em Berlim. Para adicionar
               um post à edição da próxima semana, visita este{' '}
@@ -44,7 +44,7 @@ export const EmailTemplate = ({ firstName, posts, link }) => (
           </Section>
 
           <Section className='mt-0'>
-            <h2 className='text-2xl mb-3 mt-0 tracking-tight font-semibold'>
+            <h2 className='mb-3 mt-0 text-2xl font-semibold tracking-tight'>
               Resumo
             </h2>
 
@@ -71,7 +71,7 @@ export const EmailTemplate = ({ firstName, posts, link }) => (
           </Section>
 
           <Section>
-            <h2 className='text-2xl mb-3 !mt-0 tracking-tight font-semibold'>
+            <h2 className='!mt-0 mb-3 text-2xl font-semibold tracking-tight'>
               Detalhes
             </h2>
             <div>
@@ -79,7 +79,7 @@ export const EmailTemplate = ({ firstName, posts, link }) => (
                 return (
                   <>
                     <div key={i}>
-                      <div className='border border-solid border-[#eaeaea] rounded-md my-[20px] p-[20px] w-full'>
+                      <div className='my-[20px] w-full rounded-md border border-solid border-[#eaeaea] p-[20px]'>
                         <Text className='leading-[0px]'>
                           <strong>{post.profiles.full_name}</strong>{' '}
                           {post.option == 'looking' && (
@@ -94,12 +94,12 @@ export const EmailTemplate = ({ firstName, posts, link }) => (
                           {post.short_message}.
                         </Text>
 
-                        <div className='text-slate-600 leading-[24px]'>
+                        <div className='leading-[24px] text-slate-600'>
                           {post.long_message.split('\n').map((line, index) => (
                             <Text key={index}>{line}</Text>
                           ))}
 
-                          <Section className='mt-[32px] mb-[22px]'>
+                          <Section className='mb-[22px] mt-[32px]'>
                             <Button
                               href={`mailto:${post.profiles.email}?subject=Outono&body=Este email é para ${post.profiles.full_name.split(' ')[0]} e mais ninguém consegue ler o que escreveres aqui`}
                               className='a:'
@@ -137,7 +137,7 @@ export const EmailTemplate = ({ firstName, posts, link }) => (
           </Section>
           <Section className='my-[20px]'>
             <Link
-              className='text-slate-600 text-[12px]'
+              className='text-[12px] text-slate-600'
               href={`mailto:berlin@mail.outono.org?subject=Unsubscribe&body=Envia este email para deixar de receber emails da newsletter semanal. No futuro vais poder fazer gestão da frequência e das cidades através da plataforma.`}
             >
               Remover subscrição

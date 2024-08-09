@@ -120,8 +120,8 @@ export default function Home({ user }) {
 
   if (loading) {
     return (
-      <div className=' flex flex-col w-screen min-h-screen items-center justify-center sm:p-12 p-4'>
-        <div className='space-y-8 flex flex-col md:w-[650px] w-full'>
+      <div className='flex min-h-screen w-screen flex-col items-center justify-center p-4 sm:p-12'>
+        <div className='flex w-full flex-col space-y-8 md:w-[650px]'>
           <SkeletonTitle />
           <SkeletonSummary />
           <SkeletonPost />
@@ -133,15 +133,15 @@ export default function Home({ user }) {
 
   return (
     <>
-      <main className='flex flex-col w-screen min-h-screen items-center justify-center sm:p-12 p-4 animate-in'>
+      <main className='flex min-h-screen w-screen flex-col items-center justify-center p-4 animate-in sm:p-12'>
         <div>
           {firstname && (
-            <h2 className='text-3xl font-bold mb-3 tracking-tight'>
+            <h2 className='mb-3 text-3xl font-bold tracking-tight'>
               👋 Olá {firstname}, estes são os updates da semana
             </h2>
           )}
 
-          <h2 className='text-2xl mb-3 mt-8 tracking-tight font-semibold'>
+          <h2 className='mb-3 mt-8 text-2xl font-semibold tracking-tight'>
             Resumo
           </h2>
 
@@ -160,7 +160,7 @@ export default function Home({ user }) {
               ))}
           </div>
 
-          <h2 className='text-2xl mb-3 mt-8 tracking-tight font-semibold'>
+          <h2 className='mb-3 mt-8 text-2xl font-semibold tracking-tight'>
             Detalhes
           </h2>
 
@@ -233,7 +233,7 @@ export function CardWithForm({
                 href={href}
                 target='_blank'
                 rel='noopener noreferrer'
-                className='text-outono no-underline p-1 rounded-md bg-slate-100 bg-opacity-0 hover:bg-opacity-100 transition-all'
+                className='rounded-md bg-slate-100 bg-opacity-0 p-1 text-outono no-underline transition-all hover:bg-opacity-100'
               >
                 {displayText}
               </Link>
@@ -249,7 +249,7 @@ export function CardWithForm({
   const longMessageWithLinks = renderMessageWithLinks(longMessage);
 
   return (
-    <Card className='md:w-[650px] w-full'>
+    <Card className='w-full md:w-[650px]'>
       <CardHeader>
         <div className='flex space-x-4'>
           <SupabaseAvatar
@@ -257,8 +257,8 @@ export function CardWithForm({
             fallback={author ? author[0] : 'U'}
           />
           <div className='space-y-1'>
-            <div className='flex text-center items-center gap-1'>
-              <h4 className=' font-semibold'>{author}</h4>
+            <div className='flex items-center gap-1 text-center'>
+              <h4 className='font-semibold'>{author}</h4>
               {option == 'looking' && <span>is looking for</span>}
               {option == 'offering' && <span>is offering</span>}
               {option == 'sharing' && <span>is sharing</span>}
@@ -269,7 +269,7 @@ export function CardWithForm({
         </div>
       </CardHeader>
       <CardContent>
-        <div className='flex flex-col space-y-8 w-full'>
+        <div className='flex w-full flex-col space-y-8'>
           <div className='prose prose-slate'>{longMessageWithLinks}</div>
           <div>
             <form className='space-y-4'>
@@ -343,12 +343,12 @@ export function CardWithFormToShare({
     }
   };
   return (
-    <Card className='md:w-[650px] w-full'>
+    <Card className='w-full md:w-[650px]'>
       <CardHeader>
         <div className='flex space-x-4'>
           <SupabaseAvatar path={profilePic} fallback={name ? name[0] : 'U'} />
-          <div className='space-y-1 w-full self-end'>
-            <div className='flex text-center sm:items-center gap-2 flex-col sm:flex-row items-start'>
+          <div className='w-full space-y-1 self-end'>
+            <div className='flex flex-col items-start gap-2 text-center sm:flex-row sm:items-center'>
               <Select value={option} onValueChange={setOption}>
                 <SelectTrigger className='w-full sm:w-[180px]'>
                   <SelectValue placeholder='Seleciona' />
@@ -373,7 +373,7 @@ export function CardWithFormToShare({
       <CardContent>
         <form>
           <div></div>
-          <div className='flex w-full flex-col  gap-4'>
+          <div className='flex w-full flex-col gap-4'>
             <Label htmlFor='name' className='text-base'>
               Mais Detalhes
             </Label>

@@ -75,7 +75,7 @@ export default function Avatar({ uid, url, size, onUpload }) {
         />
       ) : (
         <div
-          className='avatar no-image bg-slate-200 rounded-sm'
+          className='avatar no-image rounded-sm bg-slate-200'
           style={{ height: size, width: size }}
         />
       )}
