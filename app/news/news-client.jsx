@@ -110,7 +110,8 @@ export default function Home({ user }) {
       setLoading(true);
       const { data, error } = await supabase
         .from('profiles')
-        .select('id, full_name, avatar_url, email')
+        .select('id, full_name, avatar_url, email, current_city')
+        .eq('current_city', 'Berlin') // Only selecting people in Berlin
         .order('full_name');
 
       if (error) throw error;
@@ -473,9 +474,11 @@ export function SummaryItem({ author, option, shortMessage }) {
 export function CardWithListOfPeople({ users }) {
   return (
     <div className='hidden w-60 sm:flex sm:flex-col'>
-      <h3 className='mb-3 text-lg font-semibold tracking-tight'>Pessoas</h3>
+      <h3 className='mb-3 text-lg font-semibold tracking-tight'>
+        Pessoas em Berlim
+      </h3>
 
-      <div className='flex flex-col space-y-4'>
+      <div className='flex flex-col space-y-3'>
         {users.map((user) => (
           <div
             key={user.id}
@@ -488,7 +491,9 @@ export function CardWithListOfPeople({ users }) {
             />
             <HoverCard>
               <HoverCardTrigger asChild>
-                <span className='cursor-pointer'>{user.full_name}</span>
+                <span className='cursor-pointer text-muted-foreground'>
+                  {user.full_name}
+                </span>
               </HoverCardTrigger>
               <HoverCardContent className='w-80'>
                 <div className='flex justify-between space-x-4'>
