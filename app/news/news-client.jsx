@@ -149,7 +149,7 @@ export default function Home({ user }) {
 
   return (
     <>
-      <main className='flex min-h-screen w-screen justify-center gap-20 p-4 animate-in sm:p-12'>
+      <main className='flex min-h-screen w-screen justify-center gap-10 p-4 animate-in sm:p-12'>
         <div>
           {firstname && (
             <h2 className='mb-3 text-3xl font-bold tracking-tight'>
@@ -205,7 +205,7 @@ export default function Home({ user }) {
             />
           </div>
         </div>
-        <aside>
+        <aside className='ml-20 hidden border-l pl-10 sm:flex'>
           <CardWithListOfPeople users={allUsers} />
         </aside>
       </main>
@@ -472,54 +472,47 @@ export function SummaryItem({ author, option, shortMessage }) {
 
 export function CardWithListOfPeople({ users }) {
   return (
-    <div className='top-64 hidden w-72 sm:relative sm:flex sm:flex-col'>
-      <Card>
-        <CardHeader>
-          <CardTitle className='text-lg'>Pessoas</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className='flex flex-col gap-2 space-y-4'>
-            {users.map((user) => (
-              <div
-                key={user.id}
-                className='flex items-center space-x-3 rounded-lg hover:bg-muted'
-              >
-                <SupabaseAvatar
-                  path={user.avatar_url}
-                  fallback={user.full_name ? user.full_name[0] : 'U'}
-                  className='h-8 w-8'
-                />
-                <HoverCard>
-                  <HoverCardTrigger asChild>
-                    <span className='cursor-pointer'>{user.full_name}</span>
-                  </HoverCardTrigger>
-                  <HoverCardContent className='w-80'>
-                    <div className='flex justify-between space-x-4'>
-                      <div>
-                        <h4 className='text-xl font-semibold'>
-                          {user.full_name}
-                        </h4>
+    <div className='hidden w-60 sm:flex sm:flex-col'>
+      <h3 className='mb-3 text-lg font-semibold tracking-tight'>Pessoas</h3>
 
-                        <div className='flex items-center pt-2'>
-                          <MapPin className='mr-2 h-4 w-4 opacity-70' />
-                          <span className='text-xs text-muted-foreground'>
-                            Berlin
-                          </span>
-                        </div>
-                      </div>
-                      <SupabaseAvatar
-                        path={user.avatar_url}
-                        fallback={user.full_name ? user.full_name[0] : 'U'}
-                        className='h-16 w-16'
-                      />
+      <div className='flex flex-col space-y-4'>
+        {users.map((user) => (
+          <div
+            key={user.id}
+            className='flex items-center space-x-3 rounded-lg hover:bg-muted'
+          >
+            <SupabaseAvatar
+              path={user.avatar_url}
+              fallback={user.full_name ? user.full_name[0] : 'U'}
+              className='h-8 w-8'
+            />
+            <HoverCard>
+              <HoverCardTrigger asChild>
+                <span className='cursor-pointer'>{user.full_name}</span>
+              </HoverCardTrigger>
+              <HoverCardContent className='w-80'>
+                <div className='flex justify-between space-x-4'>
+                  <div>
+                    <h4 className='text-xl font-semibold'>{user.full_name}</h4>
+
+                    <div className='flex items-center pt-2'>
+                      <MapPin className='mr-2 h-4 w-4 opacity-70' />
+                      <span className='text-xs text-muted-foreground'>
+                        Berlin
+                      </span>
                     </div>
-                  </HoverCardContent>
-                </HoverCard>
-              </div>
-            ))}
+                  </div>
+                  <SupabaseAvatar
+                    path={user.avatar_url}
+                    fallback={user.full_name ? user.full_name[0] : 'U'}
+                    className='h-16 w-16'
+                  />
+                </div>
+              </HoverCardContent>
+            </HoverCard>
           </div>
-        </CardContent>
-      </Card>
+        ))}
+      </div>
     </div>
   );
 }
