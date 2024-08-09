@@ -69,20 +69,20 @@ export default function Avatar({ uid, url, size, onUpload }) {
           width={size}
           height={size}
           src={avatarUrl}
-          alt="Avatar"
-          className="avatar image rounded-md"
+          alt='Avatar'
+          className='avatar image rounded-md'
           style={{ height: size, width: size }}
         />
       ) : (
         <div
-          className="avatar no-image bg-slate-200 rounded-sm"
+          className='avatar no-image bg-slate-200 rounded-sm'
           style={{ height: size, width: size }}
         />
       )}
       <div style={{ width: size }}>
         <Button
-          type="button" // Explicitly set type to "button"
-          variant="ghost"
+          type='button' // Explicitly set type to "button"
+          variant='ghost'
           onClick={handleUploadClick}
           disabled={uploading}
         >
@@ -93,9 +93,9 @@ export default function Avatar({ uid, url, size, onUpload }) {
             visibility: 'hidden',
             position: 'absolute',
           }}
-          type="file"
-          id="single"
-          accept="image/*"
+          type='file'
+          id='single'
+          accept='image/*'
           onChange={uploadAvatar}
           disabled={uploading}
         />

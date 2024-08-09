@@ -48,7 +48,7 @@ export function RepliesBarChart({ data, trendPercentage }) {
           >
             <CartesianGrid vertical={false} />
             <XAxis
-              dataKey="month"
+              dataKey='month'
               tickLine={false}
               tickMargin={10}
               axisLine={false}
@@ -58,30 +58,30 @@ export function RepliesBarChart({ data, trendPercentage }) {
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
             />
-            <Bar dataKey="count" fill="var(--color-count)" radius={8}>
+            <Bar dataKey='count' fill='var(--color-count)' radius={8}>
               <LabelList
-                position="top"
+                position='top'
                 offset={12}
-                className="fill-foreground"
+                className='fill-foreground'
                 fontSize={12}
               />
             </Bar>
           </BarChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col items-start gap-2 text-sm">
+      <CardFooter className='flex-col items-start gap-2 text-sm'>
         {trendPercentage !== 0 && (
-          <div className="flex gap-2 font-medium leading-none">
+          <div className='flex gap-2 font-medium leading-none'>
             {trendPercentage > 0 ? 'Trending up' : 'Trending down'} by{' '}
             {Math.abs(trendPercentage).toFixed(1)}% this month
             {trendPercentage > 0 ? (
-              <TrendingUp className="h-4 w-4" />
+              <TrendingUp className='h-4 w-4' />
             ) : (
-              <TrendingDown className="h-4 w-4" />
+              <TrendingDown className='h-4 w-4' />
             )}
           </div>
         )}
-        <div className="leading-none text-muted-foreground">
+        <div className='leading-none text-muted-foreground'>
           As respostas ainda não estão a ser capturadas.
         </div>
       </CardFooter>

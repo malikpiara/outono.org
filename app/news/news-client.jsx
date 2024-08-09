@@ -120,8 +120,8 @@ export default function Home({ user }) {
 
   if (loading) {
     return (
-      <div className=" flex flex-col w-screen min-h-screen items-center justify-center sm:p-12 p-4">
-        <div className="space-y-8 flex flex-col md:w-[650px] w-full">
+      <div className=' flex flex-col w-screen min-h-screen items-center justify-center sm:p-12 p-4'>
+        <div className='space-y-8 flex flex-col md:w-[650px] w-full'>
           <SkeletonTitle />
           <SkeletonSummary />
           <SkeletonPost />
@@ -133,22 +133,22 @@ export default function Home({ user }) {
 
   return (
     <>
-      <main className="flex flex-col w-screen min-h-screen items-center justify-center sm:p-12 p-4 animate-in">
+      <main className='flex flex-col w-screen min-h-screen items-center justify-center sm:p-12 p-4 animate-in'>
         <div>
           {firstname && (
-            <h2 className="text-3xl font-bold mb-3 tracking-tight">
+            <h2 className='text-3xl font-bold mb-3 tracking-tight'>
               👋 Olá {firstname}, estes são os updates da semana
             </h2>
           )}
 
-          <h2 className="text-2xl mb-3 mt-8 tracking-tight font-semibold">
+          <h2 className='text-2xl mb-3 mt-8 tracking-tight font-semibold'>
             Resumo
           </h2>
 
-          <div className="space-y-4">
+          <div className='space-y-4'>
             {posts &&
               posts.map((post, i) => (
-                <div key={i} className="flex gap-2">
+                <div key={i} className='flex gap-2'>
                   <span>{i + 1}.</span>
                   <SummaryItem
                     key={post.id}
@@ -160,11 +160,11 @@ export default function Home({ user }) {
               ))}
           </div>
 
-          <h2 className="text-2xl mb-3 mt-8 tracking-tight font-semibold">
+          <h2 className='text-2xl mb-3 mt-8 tracking-tight font-semibold'>
             Detalhes
           </h2>
 
-          <div className="space-y-8">
+          <div className='space-y-8'>
             {posts &&
               posts.map((post, i) => (
                 <CardWithForm
@@ -231,9 +231,9 @@ export function CardWithForm({
               <Link
                 key={partIndex}
                 href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-outono no-underline p-1 rounded-md bg-slate-100 bg-opacity-0 hover:bg-opacity-100 transition-all"
+                target='_blank'
+                rel='noopener noreferrer'
+                className='text-outono no-underline p-1 rounded-md bg-slate-100 bg-opacity-0 hover:bg-opacity-100 transition-all'
               >
                 {displayText}
               </Link>
@@ -249,35 +249,35 @@ export function CardWithForm({
   const longMessageWithLinks = renderMessageWithLinks(longMessage);
 
   return (
-    <Card className="md:w-[650px] w-full">
+    <Card className='md:w-[650px] w-full'>
       <CardHeader>
-        <div className="flex space-x-4">
+        <div className='flex space-x-4'>
           <SupabaseAvatar
             path={profilePic}
             fallback={author ? author[0] : 'U'}
           />
-          <div className="space-y-1">
-            <div className="flex text-center items-center gap-1">
-              <h4 className=" font-semibold">{author}</h4>
+          <div className='space-y-1'>
+            <div className='flex text-center items-center gap-1'>
+              <h4 className=' font-semibold'>{author}</h4>
               {option == 'looking' && <span>is looking for</span>}
               {option == 'offering' && <span>is offering</span>}
               {option == 'sharing' && <span>is sharing</span>}
             </div>
 
-            <p className="text-sm text-outono">{shortMessage}</p>
+            <p className='text-sm text-outono'>{shortMessage}</p>
           </div>
         </div>
       </CardHeader>
       <CardContent>
-        <div className="flex flex-col space-y-8 w-full">
-          <div className="prose prose-slate">{longMessageWithLinks}</div>
+        <div className='flex flex-col space-y-8 w-full'>
+          <div className='prose prose-slate'>{longMessageWithLinks}</div>
           <div>
-            <form className="space-y-4">
-              <Label htmlFor="name" className="text-base">
+            <form className='space-y-4'>
+              <Label htmlFor='name' className='text-base'>
                 Can you help {author.split(' ')[0]}?
               </Label>
               <Textarea
-                placeholder="Escreve a tua mensagem aqui."
+                placeholder='Escreve a tua mensagem aqui.'
                 value={formMessage}
                 onChange={(e) => setFormMessage(e.target.value)}
               />
@@ -285,7 +285,7 @@ export function CardWithForm({
           </div>
         </div>
       </CardContent>
-      <CardFooter className="flex justify-between">
+      <CardFooter className='flex justify-between'>
         <div />
         <Button className={'w-full sm:w-fit'}>
           <Link
@@ -343,49 +343,49 @@ export function CardWithFormToShare({
     }
   };
   return (
-    <Card className="md:w-[650px] w-full">
+    <Card className='md:w-[650px] w-full'>
       <CardHeader>
-        <div className="flex space-x-4">
+        <div className='flex space-x-4'>
           <SupabaseAvatar path={profilePic} fallback={name ? name[0] : 'U'} />
-          <div className="space-y-1 w-full self-end">
-            <div className="flex text-center sm:items-center gap-2 flex-col sm:flex-row items-start">
+          <div className='space-y-1 w-full self-end'>
+            <div className='flex text-center sm:items-center gap-2 flex-col sm:flex-row items-start'>
               <Select value={option} onValueChange={setOption}>
-                <SelectTrigger className="w-full sm:w-[180px]">
-                  <SelectValue placeholder="Seleciona" />
+                <SelectTrigger className='w-full sm:w-[180px]'>
+                  <SelectValue placeholder='Seleciona' />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="looking">I&apos;m looking for</SelectItem>
-                  <SelectItem value="offering">I&apos;m offering</SelectItem>
-                  <SelectItem value="sharing">I&apos;m sharing</SelectItem>
+                  <SelectItem value='looking'>I&apos;m looking for</SelectItem>
+                  <SelectItem value='offering'>I&apos;m offering</SelectItem>
+                  <SelectItem value='sharing'>I&apos;m sharing</SelectItem>
                 </SelectContent>
               </Select>
               <Input
-                type="text"
-                placeholder="Escreve alguma coisa aqui."
+                type='text'
+                placeholder='Escreve alguma coisa aqui.'
                 value={shortMessage}
                 onChange={(e) => setShortMessage(e.target.value)}
               />
             </div>
-            <div className="flex items-center pt-2"></div>
+            <div className='flex items-center pt-2'></div>
           </div>
         </div>
       </CardHeader>
       <CardContent>
         <form>
           <div></div>
-          <div className="flex w-full flex-col  gap-4">
-            <Label htmlFor="name" className="text-base">
+          <div className='flex w-full flex-col  gap-4'>
+            <Label htmlFor='name' className='text-base'>
               Mais Detalhes
             </Label>
             <Textarea
-              placeholder="Escreve a tua mensagem aqui."
+              placeholder='Escreve a tua mensagem aqui.'
               value={longMessage}
               onChange={(e) => setLongMessage(e.target.value)}
             />
           </div>
         </form>
       </CardContent>
-      <CardFooter className="flex justify-between">
+      <CardFooter className='flex justify-between'>
         <div />
         <Button
           className={'w-full sm:w-fit'}
@@ -409,14 +409,14 @@ export function CardWithFormToShare({
 
 export function SummaryItem({ author, option, shortMessage }) {
   return (
-    <div className="flex flex-col">
-      <div className="space-y-1">
-        <div className="space-x-1">
-          <span className="font-semibold">{author}</span>
+    <div className='flex flex-col'>
+      <div className='space-y-1'>
+        <div className='space-x-1'>
+          <span className='font-semibold'>{author}</span>
           {option == 'looking' && <span>is looking for</span>}
           {option == 'offering' && <span>is offering</span>}
           {option == 'sharing' && <span>is sharing</span>}
-          <span className="text-sm text-outono">{shortMessage}.</span>
+          <span className='text-sm text-outono'>{shortMessage}.</span>
         </div>
       </div>
     </div>

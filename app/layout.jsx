@@ -8,7 +8,8 @@ import {
   MenubarSeparator,
   MenubarShortcut,
   MenubarTrigger,
-} from '@/components/ui/menubar';
+} from '../components/ui/menubar';
+
 import Link from 'next/link';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -21,24 +22,24 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang='en'>
       <body className={` ${inter.className}`}>
-        <Menubar className="z-50 sticky top-0 left-0">
+        <Menubar className='z-50 sticky top-0 left-0'>
           <MenubarMenu>
             <MenubarTrigger className={'font-semibold'}>Outono</MenubarTrigger>
             <MenubarContent>
               <MenubarItem>
                 <Link
-                  href="https://www.instagram.com/outono.community/"
-                  target="_blank"
+                  href='https://www.instagram.com/outono.community/'
+                  target='_blank'
                 >
                   Instagram
                 </Link>
               </MenubarItem>
               <MenubarItem>
                 <Link
-                  href="https://www.linkedin.com/company/outono-org/"
-                  target="_blank"
+                  href='https://www.linkedin.com/company/outono-org/'
+                  target='_blank'
                 >
                   LinkedIn
                 </Link>
@@ -50,7 +51,7 @@ export default function RootLayout({ children }) {
             <MenubarTrigger>Pessoas</MenubarTrigger>
             <MenubarContent>
               <MenubarItem>
-                <Link href="/#berlin" className="w-full">
+                <Link href='/#berlin' className='w-full'>
                   Berlim
                 </Link>
               </MenubarItem>
@@ -61,7 +62,7 @@ export default function RootLayout({ children }) {
             <MenubarTrigger>Ver</MenubarTrigger>
             <MenubarContent>
               <MenubarItem>
-                <Link href="/dashboard" className="w-full">
+                <Link href='/dashboard' className='w-full'>
                   Atividade
                 </Link>
               </MenubarItem>
