@@ -22,24 +22,24 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang='en'>
       <body className={` ${inter.className}`}>
-        <Menubar className="z-50 sticky top-0 left-0">
+        <Menubar className='z-50 sticky top-0 left-0'>
           <MenubarMenu>
             <MenubarTrigger className={'font-semibold'}>Outono</MenubarTrigger>
             <MenubarContent>
               <MenubarItem>
                 <Link
-                  href="https://www.instagram.com/outono.community/"
-                  target="_blank"
+                  href='https://www.instagram.com/outono.community/'
+                  target='_blank'
                 >
                   Instagram
                 </Link>
               </MenubarItem>
               <MenubarItem>
                 <Link
-                  href="https://www.linkedin.com/company/outono-org/"
-                  target="_blank"
+                  href='https://www.linkedin.com/company/outono-org/'
+                  target='_blank'
                 >
                   LinkedIn
                 </Link>
@@ -51,7 +51,7 @@ export default function RootLayout({ children }) {
             <MenubarTrigger>Pessoas</MenubarTrigger>
             <MenubarContent>
               <MenubarItem>
-                <Link href="/#berlin" className="w-full">
+                <Link href='/#berlin' className='w-full'>
                   Berlim
                 </Link>
               </MenubarItem>
@@ -63,16 +63,16 @@ export default function RootLayout({ children }) {
             <MenubarContent>
               <MenubarItem>
                 <MenubarItem>
-                  <Link href="/news" className="w-full">
+                  <Link href='/news' className='w-full'>
                     Updates
                   </Link>
                 </MenubarItem>
-                <Link href="/dashboard" className="w-full">
+                <Link href='/dashboard' className='w-full'>
                   Atividade
                 </Link>
               </MenubarItem>
               <MenubarItem>
-                <Link href="/account" className="w-full">
+                <Link href='/account' className='w-full'>
                   Conta
                 </Link>
               </MenubarItem>
