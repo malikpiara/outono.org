@@ -32,7 +32,7 @@ export function SkeletonPost() {
   return (
     <>
       <Skeleton className='h-5 w-[150px]' />
-      <Card className='md:w-[650px] w-full'>
+      <Card className='w-full md:w-[650px]'>
         <CardHeader>
           <div className='flex items-center space-x-4'>
             <Skeleton className='h-14 w-14 rounded-full' />
@@ -43,7 +43,7 @@ export function SkeletonPost() {
           </div>
         </CardHeader>
         <CardContent>
-          <div className='flex flex-col space-y-8 w-full'>
+          <div className='flex w-full flex-col space-y-8'>
             <div className='flex flex-col gap-3'>
               <Skeleton className='h-5 w-[600px]' />
               <Skeleton className='h-5 w-[550px]' />

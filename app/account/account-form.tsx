@@ -113,11 +113,11 @@ export default function AccountForm({ user }: { user: User | null }) {
   }
 
   return (
-    <div className='flex flex-col mx-auto gap-3 o w-screen min-h-screen items-center justify-center sm:p-12 p-4'>
+    <div className='o mx-auto flex min-h-screen w-screen flex-col items-center justify-center gap-3 p-4 sm:p-12'>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className='space-y-8 md:w-[650px] w-full p-4'
+          className='w-full space-y-8 p-4 md:w-[650px]'
         >
           <Avatar
             uid={user?.id}
@@ -182,7 +182,7 @@ export default function AccountForm({ user }: { user: User | null }) {
       </Form>
 
       <form action='/auth/signout' method='post'>
-        <Button variant='secondary' type='submit'>
+        <Button variant='ghost' type='submit'>
           Sign out
         </Button>
       </form>

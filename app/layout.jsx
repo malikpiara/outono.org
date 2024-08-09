@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <body className={` ${inter.className}`}>
-        <Menubar className='z-50 sticky top-0 left-0'>
+        <Menubar className='sticky left-0 top-0 z-50'>
           <MenubarMenu>
             <MenubarTrigger className={'font-semibold'}>Outono</MenubarTrigger>
             <MenubarContent>

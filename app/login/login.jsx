@@ -26,20 +26,20 @@ export default function LoginComponent({ initialEmail, initialFullName }) {
 
   return (
     <>
-      <div className='w-full md:grid md:grid-cols-2  h-full'>
-        <div className='hidden md:block bg-[#f1ebe8] bg-opacity-5 mx-3 rounded-lg h-[93vh]'>
+      <div className='h-full w-full md:grid md:grid-cols-2'>
+        <div className='mx-3 hidden h-[93vh] rounded-lg bg-[#f1ebe8] bg-opacity-5 md:block'>
           <BlobAnimation />
           <Motto />
 
-          <div className='absolute top-16 left-7 text-slate-600 text-xl font-medium flex items-center gap-2'>
+          <div className='absolute left-7 top-16 flex items-center gap-2 text-xl font-medium text-slate-600'>
             <Image
               src={logo}
               alt='Outono logo'
-              className='w-8 h-8 opacity-85'
+              className='h-8 w-8 opacity-85'
             />
           </div>
         </div>
-        <div className='flex items-center justify-center py-12 h-[93vh] animate-in'>
+        <div className='flex h-[93vh] items-center justify-center py-12 animate-in'>
           <div className='mx-auto grid w-[350px] gap-6'>
             <div className='grid gap-2 text-center lg:-mt-20'>
               {fullName ? (
@@ -75,7 +75,7 @@ export default function LoginComponent({ initialEmail, initialFullName }) {
 
                 <Button
                   type='submit'
-                  className='w-full mt-4'
+                  className='mt-4 w-full'
                   formAction={login}
                   onClick={() =>
                     toast('Email Enviado', {
@@ -97,7 +97,7 @@ export default function LoginComponent({ initialEmail, initialFullName }) {
 
 export function Motto() {
   return (
-    <p className='uppercase text-xs [writing-mode:vertical-lr] rotate-180 fixed bottom-20 tracking-wider mx-3 hover:text-tertiary max-sm:hidden transition-all duration-300 cursor-default text-slate-500 hover:animate-pulse'>
+    <p className='hover:text-tertiary fixed bottom-20 mx-3 rotate-180 cursor-default text-xs uppercase tracking-wider text-slate-500 transition-all duration-300 [writing-mode:vertical-lr] hover:animate-pulse max-sm:hidden'>
       Only you know who you can be
     </p>
   );

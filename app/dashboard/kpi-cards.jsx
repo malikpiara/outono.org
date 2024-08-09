@@ -10,10 +10,10 @@ export default function KpiCards({
   activeUsersTrend,
 }) {
   return (
-    <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4'>
+    <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4'>
       <Card className=''>
-        <CardContent className='flex flex-col p-4 gap-4'>
-          <div className='flex items-center justify-between w-full'>
+        <CardContent className='flex flex-col gap-4 p-4'>
+          <div className='flex w-full items-center justify-between'>
             <div>
               <CardTitle className='text-sm font-normal'>
                 Updates Publicados
@@ -31,13 +31,13 @@ export default function KpiCards({
                 </div>
               )}
             </div>
-            <MailIcon className='w-4 h-4 text-muted-foreground' />
+            <MailIcon className='h-4 w-4 text-muted-foreground' />
           </div>
         </CardContent>
       </Card>
       <Card className=''>
-        <CardContent className='flex flex-col p-4 gap-4'>
-          <div className='flex items-center justify-between w-full'>
+        <CardContent className='flex flex-col gap-4 p-4'>
+          <div className='flex w-full items-center justify-between'>
             <div>
               <CardTitle className='text-sm font-normal'>Respostas</CardTitle>
               <div className='text-3xl font-semibold'>0</div>
@@ -45,13 +45,13 @@ export default function KpiCards({
                 +0 from last month
               </div>
             </div>
-            <Sparkle className='w-4 h-4 text-muted-foreground' />
+            <Sparkle className='h-4 w-4 text-muted-foreground' />
           </div>
         </CardContent>
       </Card>
       <Card>
-        <CardContent className='flex flex-col p-4  gap-4'>
-          <div className='flex items-center justify-between w-full'>
+        <CardContent className='flex flex-col gap-4 p-4'>
+          <div className='flex w-full items-center justify-between'>
             <div>
               <CardTitle className='text-sm font-normal'>
                 Community Members
@@ -68,13 +68,13 @@ export default function KpiCards({
                 </div>
               )}
             </div>
-            <UsersIcon className='w-4 h-4 text-muted-foreground' />
+            <UsersIcon className='h-4 w-4 text-muted-foreground' />
           </div>
         </CardContent>
       </Card>
       <Card>
-        <CardContent className='flex flex-col p-4 gap-4'>
-          <div className='flex items-center justify-between w-full'>
+        <CardContent className='flex flex-col gap-4 p-4'>
+          <div className='flex w-full items-center justify-between'>
             <div>
               <CardTitle className='text-sm font-normal'>Active Now</CardTitle>
               <div className='text-3xl font-semibold'>{activeUsersCount}</div>
@@ -89,7 +89,7 @@ export default function KpiCards({
                 </div>
               )}
             </div>
-            <ActivityIcon className='w-4 h-4 text-muted-foreground' />
+            <ActivityIcon className='h-4 w-4 text-muted-foreground' />
           </div>
         </CardContent>
       </Card>
