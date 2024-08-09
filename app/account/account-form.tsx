@@ -18,6 +18,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { Textarea } from '@/components/ui/textarea';
 
 const formSchema = z.object({
   fullname: z.string().min(5, {
@@ -29,6 +30,7 @@ const formSchema = z.object({
   website: z.string().url().optional().or(z.literal('')),
   currentCity: z.string().optional(),
   avatar_url: z.string().nullable(),
+  bio: z.string().optional(),
 });
 
 export default function AccountForm({ user }: { user: User | null }) {
@@ -43,6 +45,7 @@ export default function AccountForm({ user }: { user: User | null }) {
       website: '',
       currentCity: '',
       avatar_url: null,
+      bio: '',
     },
   });
 
@@ -52,7 +55,7 @@ export default function AccountForm({ user }: { user: User | null }) {
 
       const { data, error, status } = await supabase
         .from('profiles')
-        .select(`full_name, username, website, avatar_url, current_city`)
+        .select(`full_name, username, website, avatar_url, current_city, bio`)
         .eq('id', user?.id)
         .single();
 
@@ -67,6 +70,7 @@ export default function AccountForm({ user }: { user: User | null }) {
           website: data.website || '',
           currentCity: data.current_city || '',
           avatar_url: data.avatar_url,
+          bio: data.bio || '',
         });
       }
     } catch (error) {
@@ -100,6 +104,7 @@ export default function AccountForm({ user }: { user: User | null }) {
         website: values.website,
         avatar_url: values.avatar_url,
         current_city: values.currentCity,
+        bio: values.bio,
         updated_at: new Date().toISOString(),
       });
       if (error) throw error;
@@ -133,12 +138,12 @@ export default function AccountForm({ user }: { user: User | null }) {
             name='fullname'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Full Name</FormLabel>
+                <FormLabel>Nome</FormLabel>
                 <FormControl>
                   <Input placeholder='Full Name' {...field} />
                 </FormControl>
                 <FormDescription>
-                  This is your public display name.
+                  Este é o nome com que apareces nas publicações e newsletters.
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -153,7 +158,9 @@ export default function AccountForm({ user }: { user: User | null }) {
                 <FormControl>
                   <Input placeholder='Username' {...field} />
                 </FormControl>
-                <FormDescription>This is your public username.</FormDescription>
+                <FormDescription>
+                  No futuro, vais poder ter uma página de perfil.
+                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -163,13 +170,31 @@ export default function AccountForm({ user }: { user: User | null }) {
             name='currentCity'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Current City</FormLabel>
+                <FormLabel>Cidade</FormLabel>
                 <FormControl>
                   <Input disabled placeholder='Current City' {...field} />
                 </FormControl>
                 <FormDescription>
                   A cidade em que estás afeta o que tu vês na plataforma.
                 </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name='bio'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Sobre Mim</FormLabel>
+                <FormControl>
+                  <Textarea
+                    placeholder='Escreve alguma coisa aqui. Outras pessoas vão conseguir ler a tua biografia.'
+                    {...field}
+                  />
+                </FormControl>
+
                 <FormMessage />
               </FormItem>
             )}
