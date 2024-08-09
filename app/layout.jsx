@@ -62,11 +62,11 @@ export default function RootLayout({ children }) {
             <MenubarTrigger>Ver</MenubarTrigger>
             <MenubarContent>
               <MenubarItem>
-                <MenubarItem>
-                  <Link href='/news' className='w-full'>
-                    Updates
-                  </Link>
-                </MenubarItem>
+                <Link href='/news' className='w-full'>
+                  Updates
+                </Link>
+              </MenubarItem>
+              <MenubarItem>
                 <Link href='/dashboard' className='w-full'>
                   Atividade
                 </Link>
