@@ -8,6 +8,13 @@ import { toast, Toaster } from 'sonner';
 import { SupabaseAvatar } from './supabaseAvatar';
 import { SkeletonSummary, SkeletonPost, SkeletonTitle } from './skeleton';
 
+import { MapPin } from 'lucide-react';
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from '@/components/ui/hover-card';
+
 import {
   Card,
   CardContent,
@@ -28,19 +35,6 @@ import {
 
 import { Textarea } from '@/components/ui/textarea';
 
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from '@/components/ui/drawer';
-
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-
 export default function Home({ user }) {
   const supabase = createClient();
   const [loading, setLoading] = useState(true);
@@ -48,6 +42,7 @@ export default function Home({ user }) {
   const [firstname, setFirstname] = useState(null);
   const [profilePic, setProfilePic] = useState(null);
   const [posts, setPosts] = useState([]);
+  const [allUsers, setAllUsers] = useState([]);
 
   // I think I should create a separate file with my main functions
   // and call them anytime I need to make my code more succint and less prone to errors.
@@ -91,7 +86,7 @@ export default function Home({ user }) {
         .select(
           `
             *,
-            profiles ( full_name, id, email, avatar_url )
+            profiles ( full_name, id, email, avatar_url, bio )
         `
         )
         .gte('created_at', twoWeeksAgo.toISOString()); // Filter posts created in the last 2 weeks
@@ -110,9 +105,30 @@ export default function Home({ user }) {
     }
   }, [supabase]);
 
+  const getAllUsers = useCallback(async () => {
+    try {
+      setLoading(true);
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('id, full_name, avatar_url, email')
+        .order('full_name');
+
+      if (error) throw error;
+
+      if (data) {
+        setAllUsers(data);
+      }
+    } catch (error) {
+      console.error('Error loading users:', error);
+      toast.error('Failed to load users');
+    } finally {
+      setLoading(false);
+    }
+  }, [supabase]);
+
   useEffect(() => {
-    getProfile(), getPosts();
-  }, [user, getProfile, getPosts]);
+    getProfile(), getPosts(), getAllUsers();
+  }, [user, getProfile, getPosts, getAllUsers]);
 
   const addPost = (newPost) => {
     setPosts([...posts, newPost]);
@@ -133,7 +149,7 @@ export default function Home({ user }) {
 
   return (
     <>
-      <main className='flex min-h-screen w-screen flex-col items-center justify-center p-4 animate-in sm:p-12'>
+      <main className='flex min-h-screen w-screen justify-center gap-20 p-4 animate-in sm:p-12'>
         <div>
           {firstname && (
             <h2 className='mb-3 text-3xl font-bold tracking-tight'>
@@ -175,6 +191,7 @@ export default function Home({ user }) {
                   shortMessage={post.short_message}
                   longMessage={post.long_message}
                   profilePic={post.profiles.avatar_url}
+                  bio={post.profiles.bio}
                 />
               ))}
 
@@ -188,6 +205,9 @@ export default function Home({ user }) {
             />
           </div>
         </div>
+        <aside>
+          <CardWithListOfPeople users={allUsers} />
+        </aside>
       </main>
       <Toaster />
     </>
@@ -201,6 +221,7 @@ export function CardWithForm({
   longMessage,
   authorEmail,
   profilePic,
+  bio,
 }) {
   const [formMessage, setFormMessage] = useState('');
 
@@ -258,7 +279,33 @@ export function CardWithForm({
           />
           <div className='space-y-1'>
             <div className='flex items-center gap-1 text-center'>
-              <h4 className='font-semibold'>{author}</h4>
+              <HoverCard>
+                <HoverCardTrigger asChild>
+                  <h4 className='cursor-pointer font-semibold underline-offset-4 hover:underline'>
+                    {author}
+                  </h4>
+                </HoverCardTrigger>
+                <HoverCardContent className='w-96'>
+                  <div className='flex flex-row-reverse justify-between space-x-4'>
+                    <SupabaseAvatar
+                      className='h-16 w-16'
+                      path={profilePic}
+                      fallback={author ? author[0] : 'U'}
+                    />
+                    <div className='space-y-1 self-start text-left'>
+                      <h4 className='text-xl font-semibold'>{author}</h4>
+                      <p className='text-[15px] text-muted-foreground'>{bio}</p>
+                      <div className='flex items-center pt-2'>
+                        <MapPin className='mr-2 h-4 w-4 opacity-70' />{' '}
+                        <span className='text-sm text-muted-foreground'>
+                          Berlin
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </HoverCardContent>
+              </HoverCard>
+
               {option == 'looking' && <span>is looking for</span>}
               {option == 'offering' && <span>is offering</span>}
               {option == 'sharing' && <span>is sharing</span>}
@@ -419,6 +466,60 @@ export function SummaryItem({ author, option, shortMessage }) {
           <span className='text-sm text-outono'>{shortMessage}.</span>
         </div>
       </div>
+    </div>
+  );
+}
+
+export function CardWithListOfPeople({ users }) {
+  return (
+    <div className='top-64 hidden w-72 sm:relative sm:flex sm:flex-col'>
+      <Card>
+        <CardHeader>
+          <CardTitle className='text-lg'>Pessoas</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className='flex flex-col gap-2 space-y-4'>
+            {users.map((user) => (
+              <div
+                key={user.id}
+                className='flex items-center space-x-3 rounded-lg hover:bg-muted'
+              >
+                <SupabaseAvatar
+                  path={user.avatar_url}
+                  fallback={user.full_name ? user.full_name[0] : 'U'}
+                  className='h-8 w-8'
+                />
+                <HoverCard>
+                  <HoverCardTrigger asChild>
+                    <span className='cursor-pointer'>{user.full_name}</span>
+                  </HoverCardTrigger>
+                  <HoverCardContent className='w-80'>
+                    <div className='flex justify-between space-x-4'>
+                      <div>
+                        <h4 className='text-xl font-semibold'>
+                          {user.full_name}
+                        </h4>
+
+                        <div className='flex items-center pt-2'>
+                          <MapPin className='mr-2 h-4 w-4 opacity-70' />
+                          <span className='text-xs text-muted-foreground'>
+                            Berlin
+                          </span>
+                        </div>
+                      </div>
+                      <SupabaseAvatar
+                        path={user.avatar_url}
+                        fallback={user.full_name ? user.full_name[0] : 'U'}
+                        className='h-16 w-16'
+                      />
+                    </div>
+                  </HoverCardContent>
+                </HoverCard>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }
