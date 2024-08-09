@@ -113,11 +113,11 @@ export default function AccountForm({ user }: { user: User | null }) {
   }
 
   return (
-    <div className="flex flex-col mx-auto gap-3 o w-screen min-h-screen items-center justify-center sm:p-12 p-4">
+    <div className='flex flex-col mx-auto gap-3 o w-screen min-h-screen items-center justify-center sm:p-12 p-4'>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8 md:w-[650px] w-full p-4"
+          className='space-y-8 md:w-[650px] w-full p-4'
         >
           <Avatar
             uid={user?.id}
@@ -130,12 +130,12 @@ export default function AccountForm({ user }: { user: User | null }) {
 
           <FormField
             control={form.control}
-            name="fullname"
+            name='fullname'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Full Name</FormLabel>
                 <FormControl>
-                  <Input placeholder="Full Name" {...field} />
+                  <Input placeholder='Full Name' {...field} />
                 </FormControl>
                 <FormDescription>
                   This is your public display name.
@@ -146,12 +146,12 @@ export default function AccountForm({ user }: { user: User | null }) {
           />
           <FormField
             control={form.control}
-            name="username"
+            name='username'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Username</FormLabel>
                 <FormControl>
-                  <Input placeholder="Username" {...field} />
+                  <Input placeholder='Username' {...field} />
                 </FormControl>
                 <FormDescription>This is your public username.</FormDescription>
                 <FormMessage />
@@ -160,12 +160,12 @@ export default function AccountForm({ user }: { user: User | null }) {
           />
           <FormField
             control={form.control}
-            name="currentCity"
+            name='currentCity'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Current City</FormLabel>
                 <FormControl>
-                  <Input disabled placeholder="Current City" {...field} />
+                  <Input disabled placeholder='Current City' {...field} />
                 </FormControl>
                 <FormDescription>
                   A cidade em que estás afeta o que tu vês na plataforma.
@@ -175,14 +175,14 @@ export default function AccountForm({ user }: { user: User | null }) {
             )}
           />
 
-          <Button type="submit" variant="outline">
+          <Button type='submit' variant='outline'>
             Update Profile
           </Button>
         </form>
       </Form>
 
-      <form action="/auth/signout" method="post">
-        <Button variant="secondary" type="submit">
+      <form action='/auth/signout' method='post'>
+        <Button variant='secondary' type='submit'>
           Sign out
         </Button>
       </form>

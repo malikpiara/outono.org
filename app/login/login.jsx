@@ -26,47 +26,47 @@ export default function LoginComponent({ initialEmail, initialFullName }) {
 
   return (
     <>
-      <div className="w-full md:grid md:grid-cols-2  h-full">
-        <div className="hidden md:block bg-[#f1ebe8] bg-opacity-5 mx-3 rounded-lg h-[93vh]">
+      <div className='w-full md:grid md:grid-cols-2  h-full'>
+        <div className='hidden md:block bg-[#f1ebe8] bg-opacity-5 mx-3 rounded-lg h-[93vh]'>
           <BlobAnimation />
           <Motto />
 
-          <div className="absolute top-16 left-7 text-slate-600 text-xl font-medium flex items-center gap-2">
+          <div className='absolute top-16 left-7 text-slate-600 text-xl font-medium flex items-center gap-2'>
             <Image
               src={logo}
-              alt="Outono logo"
-              className="w-8 h-8 opacity-85"
+              alt='Outono logo'
+              className='w-8 h-8 opacity-85'
             />
           </div>
         </div>
-        <div className="flex items-center justify-center py-12 h-[93vh] animate-in">
-          <div className="mx-auto grid w-[350px] gap-6">
-            <div className="grid gap-2 text-center lg:-mt-20">
+        <div className='flex items-center justify-center py-12 h-[93vh] animate-in'>
+          <div className='mx-auto grid w-[350px] gap-6'>
+            <div className='grid gap-2 text-center lg:-mt-20'>
               {fullName ? (
                 <>
-                  <h1 className="text-3xl font-bold">
+                  <h1 className='text-3xl font-bold'>
                     👋 Olá, {fullName.split(' ')[0]}!
                   </h1>
                 </>
               ) : (
                 <>
-                  <h1 className="text-3xl font-bold">Entra na Outono</h1>
+                  <h1 className='text-3xl font-bold'>Entra na Outono</h1>
                 </>
               )}
-              <p className="text-balance text-muted-foreground">
+              <p className='text-balance text-muted-foreground'>
                 Ao clicar em entrar, vais receber um link para entrar na
                 plataforma via email.
               </p>
             </div>
-            <div className="grid gap-4">
+            <div className='grid gap-4'>
               <form>
-                <div className="grid gap-2">
-                  <Label htmlFor="email">Email</Label>
+                <div className='grid gap-2'>
+                  <Label htmlFor='email'>Email</Label>
                   <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder="m@example.com"
+                    id='email'
+                    name='email'
+                    type='email'
+                    placeholder='m@example.com'
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -74,8 +74,8 @@ export default function LoginComponent({ initialEmail, initialFullName }) {
                 </div>
 
                 <Button
-                  type="submit"
-                  className="w-full mt-4"
+                  type='submit'
+                  className='w-full mt-4'
                   formAction={login}
                   onClick={() =>
                     toast('Email Enviado', {
@@ -97,7 +97,7 @@ export default function LoginComponent({ initialEmail, initialFullName }) {
 
 export function Motto() {
   return (
-    <p className="uppercase text-xs [writing-mode:vertical-lr] rotate-180 fixed bottom-20 tracking-wider mx-3 hover:text-tertiary max-sm:hidden transition-all duration-300 cursor-default text-slate-500 hover:animate-pulse">
+    <p className='uppercase text-xs [writing-mode:vertical-lr] rotate-180 fixed bottom-20 tracking-wider mx-3 hover:text-tertiary max-sm:hidden transition-all duration-300 cursor-default text-slate-500 hover:animate-pulse'>
       Only you know who you can be
     </p>
   );
