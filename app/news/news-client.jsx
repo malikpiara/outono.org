@@ -464,7 +464,7 @@ export function SummaryItem({ author, option, shortMessage }) {
           {option == 'looking' && <span>is looking for</span>}
           {option == 'offering' && <span>is offering</span>}
           {option == 'sharing' && <span>is sharing</span>}
-          <span className='text-sm text-outono'>{shortMessage}.</span>
+          <span className='text-outono'>{shortMessage}.</span>
         </div>
       </div>
     </div>
