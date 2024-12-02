@@ -21,24 +21,24 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang='en'>
+    <html lang="en">
       <body className={` ${inter.className}`}>
-        <Menubar className='sticky left-0 top-0 z-50'>
+        <Menubar className="sticky left-0 top-0 z-50">
           <MenubarMenu>
             <MenubarTrigger className={'font-semibold'}>Outono</MenubarTrigger>
             <MenubarContent>
               <MenubarItem>
                 <Link
-                  href='https://www.instagram.com/outono.community/'
-                  target='_blank'
+                  href="https://www.instagram.com/outono.community/"
+                  target="_blank"
                 >
                   Instagram
                 </Link>
               </MenubarItem>
               <MenubarItem>
                 <Link
-                  href='https://www.linkedin.com/company/outono-org/'
-                  target='_blank'
+                  href="https://www.linkedin.com/company/outono-org/"
+                  target="_blank"
                 >
                   LinkedIn
                 </Link>
@@ -50,12 +50,12 @@ export default function RootLayout({ children }) {
             <MenubarTrigger>Pessoas</MenubarTrigger>
             <MenubarContent>
               <MenubarItem>
-                <Link href='/#berlin' className='w-full'>
+                <Link href="/#berlin" className="w-full">
                   Berlim
                 </Link>
               </MenubarItem>
               <MenubarItem>
-                <Link href='/#berlin' className='w-full'>
+                <Link href="/#berlin" className="w-full">
                   Londres
                 </Link>
               </MenubarItem>
@@ -66,7 +66,7 @@ export default function RootLayout({ children }) {
             <MenubarTrigger>Ver</MenubarTrigger>
             <MenubarContent>
               <MenubarItem>
-                <Link href='/dashboard' className='w-full'>
+                <Link href="/dashboard" className="w-full">
                   Atividade
                 </Link>
               </MenubarItem>
