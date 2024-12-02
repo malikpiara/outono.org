@@ -1,13 +1,23 @@
 const people = [
   {
     name: 'Malik Piara',
-    headline: 'Product Enablement at RoundTwenty',
+    headline: 'Product Enablement at Cobblestone',
     photo: '/malik.jpeg',
     links: {
       linkedin: 'malikpiara',
       github: 'malikpiara',
       x: 'malikpiara',
       website: 'moonwith.com',
+    },
+  },
+  {
+    name: 'Marco Silva',
+    headline: 'Sr. Engineering Manager at Coalition',
+    photo: '/marco.jpeg',
+    links: {
+      linkedin: 'marcodasilva',
+      github: 'igama',
+      x: 'igama',
     },
   },
   {

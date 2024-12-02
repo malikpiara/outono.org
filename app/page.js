@@ -22,30 +22,30 @@ import Image from 'next/image';
 export default function Home() {
   return (
     <>
-      <div className="flex min-h-screen">
-        <div className="hidden md:block  w-1/2 fixed top-7 left-0 h-[96vh] bg-[#f1ebe8] bg-opacity-5 p-3">
+      <div className='flex min-h-screen'>
+        <div className='fixed left-0 top-7 hidden h-[96vh] w-1/2 bg-[#f1ebe8] bg-opacity-5 p-3 md:block'>
           <BlobAnimation />
           <Motto />
 
-          <div className="absolute top-9 left-7 text-slate-600 text-xl font-medium flex items-center gap-2 ">
+          <div className='absolute left-7 top-9 flex items-center gap-2 text-xl font-medium text-slate-600'>
             <Image
               src={logo}
-              alt="Outono logo"
-              className="w-8 h-8 opacity-85"
+              alt='Outono logo'
+              className='h-8 w-8 opacity-85'
             />
           </div>
         </div>
-        <main className="w-full md:w-1/2 md:ml-[50%]">
-          <div className="flex flex-col items-center md:items-baseline animate-in m-4 md:m-8 pt-6 md:pt-4">
-            <div className="w-full items-center justify-between  animate-in prose">
-              <h2 className="text-4xl font-bold mb-3 tracking-tight">Outono</h2>
-              <p className="mb-3 text-lg leading-7 text-slate-700 [&:not(:first-child)]:mt-6">
+        <main className='w-full md:ml-[50%] md:w-1/2'>
+          <div className='m-4 flex flex-col items-center pt-4 animate-in md:m-8 md:-mt-4 md:items-baseline'>
+            <div className='prose w-full items-center justify-between'>
+              <h2 className='mb-3 text-4xl font-bold tracking-tight'>Outono</h2>
+              <p className='mb-3 text-lg leading-7 text-slate-700 [&:not(:first-child)]:mt-6'>
                 O Outono simboliza transição e amadurecimento. Tal como a
                 estação, também nós estamos a atravessar um periodo de mudança,
                 transformação e ambiguidade.
               </p>
 
-              <p className="mb-3 text-lg leading-7 text-slate-700 [&:not(:first-child)]:mt-6">
+              <p className='mb-3 text-lg leading-7 text-slate-700 [&:not(:first-child)]:mt-6'>
                 Somos programadores, empreendedores e designers portugueses a
                 viver e a trabalhar fora de Portugal. Vemos os altos níveis de
                 emigração e o contexto de trabalho remoto como uma oportunidade
@@ -53,25 +53,25 @@ export default function Home() {
                 o lado a crescer.
               </p>
 
-              <h2 className="text-2xl mb-3 mt-8 tracking-tight font-semibold">
+              <h2 className='mb-3 mt-8 text-2xl font-semibold tracking-tight'>
                 O que fazemos?
               </h2>
-              <p className="mb-3 text-lg text-slate-700 leading-7 [&:not(:first-child)]:mt-6">
+              <p className='mb-3 text-lg leading-7 text-slate-700 [&:not(:first-child)]:mt-6'>
                 Existimos para conectar e apoiar Portugueses que trabalham em
                 tecnologia e que empreendem pelo mundo fora.
               </p>
 
-              <p className="mb-3 text-lg text-slate-700 leading-7 [&:not(:first-child)]:mt-6">
+              <p className='mb-3 text-lg leading-7 text-slate-700 [&:not(:first-child)]:mt-6'>
                 Organizamos jantares, meetups e partilhamos experiências e
                 oportunidades de crescimento pessoal e profissional, com grupos
                 e newsletters locais, aos quais todos os membros podem ter
                 acesso.
               </p>
 
-              <h2 className="text-2xl mb-3 mt-8 tracking-tight font-semibold">
+              <h2 className='mb-3 mt-8 text-2xl font-semibold tracking-tight'>
                 Visão
               </h2>
-              <p className="mb-3 text-lg text-slate-700 leading-7 [&:not(:first-child)]:mt-6">
+              <p className='mb-3 text-lg leading-7 text-slate-700 [&:not(:first-child)]:mt-6'>
                 Tencionamos abrir hubs em cidades chave, para ajudar
                 empreendedores a entrar em novos mercados e facilitar a
                 transição e integração de profissionais que decidiram
@@ -80,7 +80,7 @@ export default function Home() {
 
               <Drawer>
                 <DrawerTrigger asChild>
-                  <Button className="w-60">Fala Connosco</Button>
+                  <Button className='w-60'>Fala Connosco</Button>
                 </DrawerTrigger>
                 <DrawerContent>
                   <DrawerHeader>
@@ -90,46 +90,46 @@ export default function Home() {
                     </DrawerDescription>
                   </DrawerHeader>
                   <DrawerFooter>
-                    <Button variant="outline" asChild>
-                      <Link href="mailto:malik@outono.org">
+                    <Button variant='outline' asChild>
+                      <Link href='mailto:malik@outono.org'>
                         {' '}
-                        <Mail className="mr-2 h-4 w-4" />
+                        <Mail className='mr-2 h-4 w-4' />
                         Email
                       </Link>
                     </Button>
 
-                    <Button variant="outline" asChild>
-                      <Link href="https://t.me/malikpiara/">
+                    <Button variant='outline' asChild>
+                      <Link href='https://t.me/malikpiara/'>
                         {' '}
-                        <Send className="mr-2 h-4 w-4" />
+                        <Send className='mr-2 h-4 w-4' />
                         Telegram
                       </Link>
                     </Button>
 
-                    <Button variant="outline" asChild>
-                      <Link href="https://wa.me/+351962119084/">
+                    <Button variant='outline' asChild>
+                      <Link href='https://wa.me/+351962119084/'>
                         {' '}
-                        <MessageCircle className="mr-2 h-4 w-4" />
+                        <MessageCircle className='mr-2 h-4 w-4' />
                         WhatsApp
                       </Link>
                     </Button>
 
                     <DrawerClose>
-                      <Button variant="outline">Cancel</Button>
+                      <Button variant='outline'>Cancel</Button>
                     </DrawerClose>
                   </DrawerFooter>
                 </DrawerContent>
               </Drawer>
 
               <h2
-                id="berlin"
-                className="text-2xl mb-3 mt-8 tracking-tight font-semibold"
+                id='berlin'
+                className='mb-3 mt-8 text-2xl font-semibold tracking-tight'
               >
                 Pessoas
               </h2>
 
-              <p className="mb-3 text-lg text-slate-700 leading-7">
-                Conhece alguns dos membros do nosso primeiro hub em Berlim.
+              <p className='mb-3 text-lg leading-7 text-slate-700'>
+                Conhece alguns dos nossos membros em Berlim e em Londres.
               </p>
             </div>
 
@@ -271,7 +271,7 @@ export default function Home() {
 
 export function Motto() {
   return (
-    <p className="uppercase text-xs [writing-mode:vertical-lr] rotate-180 fixed bottom-20 tracking-wider mx-3 hover:text-tertiary max-sm:hidden transition-all duration-300 cursor-default text-slate-500 hover:animate-pulse">
+    <p className='hover:text-tertiary fixed bottom-20 mx-3 rotate-180 cursor-default text-xs uppercase tracking-wider text-slate-500 transition-all duration-300 [writing-mode:vertical-lr] hover:animate-pulse max-sm:hidden'>
       Only you know who you can be
     </p>
   );
