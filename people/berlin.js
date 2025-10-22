@@ -54,6 +54,17 @@ const people = [
     },
   },
   {
+    name: 'Diogo Guerner',
+    headline: 'CEO at Naviu and Ambassador for Berlin',
+    photo: '/diogo.jpeg',
+    links: {
+      linkedin: 'diogoguerner',
+      github: '',
+      x: '',
+      website: '',
+    },
+  },
+  {
     name: 'Dinarte Jesus',
     headline: 'Co-Founder at Athleads',
     photo: '/dinarte.jpeg',
