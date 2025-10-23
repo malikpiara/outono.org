@@ -78,48 +78,58 @@ export default function Home() {
                 estabelecer-se fora de Portugal.
               </p>
 
-              <Drawer>
-                <DrawerTrigger asChild>
-                  <Button className="w-60">Fala Connosco</Button>
-                </DrawerTrigger>
-                <DrawerContent>
-                  <DrawerHeader>
-                    <DrawerTitle>Entra em contacto</DrawerTitle>
-                    <DrawerDescription>
-                      Costumamos responder dentro de 2 dias.
-                    </DrawerDescription>
-                  </DrawerHeader>
-                  <DrawerFooter>
-                    <Button variant="outline" asChild>
-                      <Link href="mailto:malik@outono.org">
-                        {' '}
-                        <Mail className="mr-2 h-4 w-4" />
-                        Email
-                      </Link>
-                    </Button>
+              <div className="gap-5 flex">
+                <Drawer>
+                  <DrawerTrigger asChild>
+                    <Button className="w-60">Fala Connosco</Button>
+                  </DrawerTrigger>
+                  <DrawerContent>
+                    <DrawerHeader>
+                      <DrawerTitle>Entra em contacto</DrawerTitle>
+                      <DrawerDescription>
+                        Costumamos responder dentro de 2 dias.
+                      </DrawerDescription>
+                    </DrawerHeader>
+                    <DrawerFooter>
+                      <Button variant="outline" asChild>
+                        <Link href="mailto:malik@outono.org">
+                          {' '}
+                          <Mail className="mr-2 h-4 w-4" />
+                          Email
+                        </Link>
+                      </Button>
 
-                    <Button variant="outline" asChild>
-                      <Link href="https://t.me/malikpiara/">
-                        {' '}
-                        <Send className="mr-2 h-4 w-4" />
-                        Telegram
-                      </Link>
-                    </Button>
+                      <Button variant="outline" asChild>
+                        <Link href="https://t.me/malikpiara/">
+                          {' '}
+                          <Send className="mr-2 h-4 w-4" />
+                          Telegram
+                        </Link>
+                      </Button>
 
-                    <Button variant="outline" asChild>
-                      <Link href="https://wa.me/+351962119084/">
-                        {' '}
-                        <MessageCircle className="mr-2 h-4 w-4" />
-                        WhatsApp
-                      </Link>
-                    </Button>
+                      <Button variant="outline" asChild>
+                        <Link href="https://wa.me/+351962119084/">
+                          {' '}
+                          <MessageCircle className="mr-2 h-4 w-4" />
+                          WhatsApp
+                        </Link>
+                      </Button>
 
-                    <DrawerClose>
-                      <Button variant="outline">Cancel</Button>
-                    </DrawerClose>
-                  </DrawerFooter>
-                </DrawerContent>
-              </Drawer>
+                      <DrawerClose>
+                        <Button variant="outline">Cancel</Button>
+                      </DrawerClose>
+                    </DrawerFooter>
+                  </DrawerContent>
+                </Drawer>
+
+                <Link
+                  href={
+                    'https://outono-org.notion.site/14335411bd3c81dd9058d66152c69e11?pvs=105'
+                  }
+                >
+                  <Button className="w-60 bg-[#E52612]">Inscreve-te</Button>
+                </Link>
+              </div>
 
               <h2
                 id="berlin"

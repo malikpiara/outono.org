@@ -12,7 +12,7 @@ const people = [
   },
   {
     name: 'Marco Silva',
-    headline: 'Sr. Engineering Manager at Coalition',
+    headline: 'Sr. Engineering Manager and Ambassador for London',
     photo: '/marco.jpeg',
     links: {
       linkedin: 'marcodasilva',
@@ -26,6 +26,17 @@ const people = [
     photo: '/anaGaspar.jpeg',
     links: {
       linkedin: 'ana-gaspar10',
+      github: '',
+      x: '',
+      website: '',
+    },
+  },
+  {
+    name: 'Ana Sampaio',
+    headline: 'Engineering Manager at Midnite and Ambassador for London',
+    photo: '/anaSampaio.png',
+    links: {
+      linkedin: 'anaisampaio',
       github: '',
       x: '',
       website: '',
@@ -66,7 +77,7 @@ const people = [
   },
   {
     name: 'Dinarte Jesus',
-    headline: 'Co-Founder at Athleads',
+    headline: 'Co-Founder at Athleads and Ambassador for Zurich',
     photo: '/dinarte.jpeg',
     links: {
       linkedin: 'jdinartejesus',
